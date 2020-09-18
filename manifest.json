@@ -1,7 +1,7 @@
 {
   "display": "standalone",
   "lang": "en",
-  "name": "site",
-  "short_name": "site",
+  "name": "nguyenkhooi",
+  "short_name": "nguyenkhooi",
   "start_url": "/?utm_source=web_app_manifest"
 }
