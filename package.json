@@ -1,6 +1,6 @@
 {
   "main": "index.js",
-  "homepage": "http://nguyenkhooi.github.io/",
+  "homepage": "http://nguyenkhooi.github.io/oooh",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
