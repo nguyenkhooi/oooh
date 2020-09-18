@@ -1,1 +1,3 @@
-//@ts-check 
+//@ts-check
+
+export * from "./generals";

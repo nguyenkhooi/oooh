@@ -1,9 +1,9 @@
 {
-  "name": "site",
-  "displayName": "site",
+  "name": "nguyenkhooi",
+  "displayName": "nguyenkhooi",
   "expo": {
-    "name": "site",
-    "slug": "site",
+    "name": "nguyenkhooi",
+    "slug": "nguyenkhooi",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

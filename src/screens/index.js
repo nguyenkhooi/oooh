@@ -1,3 +1,3 @@
 //@ts-check
 export * from "./_navigation";
-export * from "./home-screen/HomeScreen";
+export { default as HomeScreen } from "./home-screen/HomeScreen";
