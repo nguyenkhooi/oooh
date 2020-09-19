@@ -1,9 +1,8 @@
 import {
   NavigationContainerRef,
   NavigationState,
-  PartialState,
+  PartialState
 } from "@react-navigation/native";
-import { TransitionSpecs } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from "react";
 import { BackHandler } from "react-native";
 // import { enum_HomeStack } from "./home-navigator";
@@ -168,4 +167,9 @@ export const nConfig = {
   },
   noHeader: { headerShown: false },
   headerTitle: ({ route }) => ({ title: route.params.title }),
+  noTitle: {
+    headerTitleStyle: {
+      fontSize: 0,
+    },
+  },
 };

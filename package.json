@@ -27,12 +27,16 @@
     "react-native": "~0.62.2",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-reanimated": "~1.9.0",
+    "react-native-responsive-grid-system": "^1.0.4",
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-size-matters": "^0.3.1",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-super-grid": "^4.0.3",
     "react-native-svg": "12.1.0",
     "react-native-unimodules": "~0.10.0",
-    "react-native-web": "~0.11.7"
+    "react-native-web": "~0.11.7",
+    "rn-placeholder": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
@@ -47,6 +51,7 @@
     "@types/react": "~16.9.23",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.61.23",
+    "@types/react-native-snap-carousel": "^3.8.2",
     "babel-preset-expo": "~8.2.0",
     "gh-pages": "^3.1.0",
     "jest-expo": "~38.0.0",

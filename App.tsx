@@ -1,17 +1,16 @@
 import * as eva from "@eva-design/eva";
+import { NavigationContainerRef } from "@react-navigation/native";
 import { ApplicationProvider } from "@ui-kitten/components";
+import { ThemeProvider } from "engines";
 import * as React from "react";
 import {
   AppNavigator,
   canExit,
-  Navigation,
   setRootNavigation,
   useBackButtonHandler,
-  useNavigationPersistence,
+  useNavigationPersistence
 } from "screens";
-import { ThemeProvider } from "engines";
 import { ENUM_Theme, themeDark, themeLight } from "utils";
-import { NavigationContainerRef } from "@react-navigation/native";
 
 function App() {
   const [_theme, setTheme] = React.useState<ENUM_Theme>("themeLight");

@@ -1,18 +1,19 @@
 import {
   createStackNavigator,
-  HeaderBackButton,
-  TransitionPresets,
+  StackNavigationOptions,
+  TransitionPresets
 } from "@react-navigation/stack";
+import { Text, Toggle } from "@ui-kitten/components";
 import { withTheme } from "engines";
 import * as R from "ramda";
 import React from "react";
-import { IPSCR, KeyOf } from "utils";
+import { View } from "react-native";
+import { IPSCR, KeyOf, spacing } from "utils";
 import AboutScreen from "../about-screen/AboutScreen";
 import HomeScreen from "../home-screen/HomeScreen";
-import { nConfig } from "./navigation-utils";
 
 const screenProps = {
-  Home: { component: HomeScreen, options: nConfig.noHeader },
+  Home: { component: HomeScreen },
   About: { component: AboutScreen },
 };
 const __PRIMARY = R.keys(screenProps);
@@ -21,39 +22,31 @@ export type enum_PrimaryStack = KeyOf<typeof screenProps>;
 export const PrimaryStack = withTheme((props: IPSCR) => {
   const Stack = createStackNavigator<typeof screenProps>();
   const {
-    theme: { C },
+    theme: { C, dark },
+    setTheme,
   } = props;
 
-  const screenOptions = {
-    ...TransitionPresets.ScaleFromCenterAndroid,
-    transitionSpec: {
-      open: nConfig.durationSpec,
-      close: nConfig.durationSpec,
-    },
+  const screenOptions: StackNavigationOptions = {
     headerStyle: {
       elevation: 0,
       backgroundColor: C.background,
-      borderWidth: 0,
+      borderBottomWidth: 0,
     },
     headerTitleStyle: {
       //   fontFamily: CIRCULAR_BOLD,
-      fontSize: 18,
-      color: C.text,
-      marginLeft: 30,
-      marginRight: 30,
+      fontSize: 0,
     },
 
     headerTitleAlign: "center",
-    headerLeft: (props) => (
-      <HeaderBackButton
-        {...props}
-        style={{}}
-        tintColor={C.primary}
-        labelStyle={{ color: "transparent" }}
-        // onPress={() => {
-        //   // Do something
-        // }}
-      />
+    headerRight: (props) => (
+      <View style={{ paddingHorizontal: spacing[3] }}>
+        <Toggle
+          checked={dark}
+          onChange={() => setTheme(dark ? "themeLight" : "themeDark")}
+        >
+          <Text category={"h6"}>{dark ? "🌒" : "🌞"}</Text>
+        </Toggle>
+      </View>
     ),
   };
 
@@ -61,17 +54,23 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
     ...TransitionPresets.ModalPresentationIOS,
     gestureEnabled: true,
     cardOverlayEnabled: true,
+    animationEnabled: true,
   };
 
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      headerMode="screen"
+      headerMode="float"
       mode="modal"
       screenOptions={config}
     >
       {__PRIMARY.map((screen) => (
-        <Stack.Screen name={screen} {...screenProps[screen]} key={screen} />
+        <Stack.Screen
+          name={screen}
+          {...screenProps[screen]}
+          key={screen}
+          options={screen == "Home" ? screenOptions : null}
+        />
       ))}
     </Stack.Navigator>
   );

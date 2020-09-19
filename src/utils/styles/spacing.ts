@@ -1,4 +1,4 @@
-import { scale } from "../helpers";
+import { IS_WEB, scale } from "../helpers";
 
 /**
  * NOTE TO DEVS:
@@ -31,31 +31,31 @@ import { scale } from "../helpers";
  * within the components themselves if they are truly exceptions.
  *
  * 0 = none    - nothing. only here to bust out of a zero-based array.
- * 
+ *
  * 1 = tiny    - elements contextually close to each other
- * 
+ *
  * 2 = smaller - for groups of closely related items or perhaps borders
- * 
+ *
  * 3 = small   - ?
- * 
+ *
  * 4 = medium  - ?
- * 
+ *
  * 5 = medium+ - ?
- * 
+ *
  * 6 = large   - between groups of content that aren't related?
- * 
+ *
  * 7 = huge    - ?
- * 
+ *
  * 8 = massive - an uncomfortable amount of whitespace
  */
 export const spacing = [
-  scale(0),
-  scale(4),
-  scale(8),
-  scale(12),
-  scale(16),
-  scale(24),
-  scale(32),
-  scale(48),
-  scale(64),
+  IS_WEB ? scale(0) : scale(0),
+  IS_WEB ? scale(104) : scale(4),
+  IS_WEB ? scale(108) : scale(8),
+  IS_WEB ? scale(112) : scale(12),
+  IS_WEB ? scale(116) : scale(16),
+  IS_WEB ? scale(124) : scale(24),
+  IS_WEB ? scale(132) : scale(32),
+  IS_WEB ? scale(148) : scale(48),
+  IS_WEB ? scale(164) : scale(64),
 ];
