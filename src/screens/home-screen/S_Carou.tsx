@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Carousel from "react-native-snap-carousel"; // Version can be specified in package.json
-import { useDimension } from "utils";
+import { IS_WEB, useDimension } from "utils";
 
 const DATA: readonly string[] = [];
 for (let i = 0; i < 10; i++) {
@@ -69,7 +69,7 @@ export default function S_Carou(props) {
         useScrollView={true}
         // enableMomentum={true}
         enableSnap={true}
-        pagingEnabled={true}
+        pagingEnabled={IS_WEB ? true : false}
         // autoplay={true}
         // loop={true}
       />

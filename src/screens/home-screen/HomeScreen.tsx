@@ -5,7 +5,7 @@ import * as React from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Navigation } from "screens";
-import { IPSCR, spacing, useDimension } from "utils";
+import { IPSCR, IS_WEB, spacing, useDimension } from "utils";
 import { S_PortfolioGrid } from "./S_PortfolioGrid";
 
 export default withTheme((props: IPSCR) => {
@@ -57,7 +57,7 @@ export default withTheme((props: IPSCR) => {
     <ScrollView
       ref={scrollRef}
       style={{ backgroundColor: C.background }}
-      pagingEnabled={true}
+      pagingEnabled={IS_WEB ? true : false}
     >
       {S_Home.map((section, key) => (
         <View
