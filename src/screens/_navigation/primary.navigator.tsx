@@ -8,14 +8,25 @@ import { withTheme } from "engines";
 import * as R from "ramda";
 import React from "react";
 import { View } from "react-native";
+import ProjectScreen from "screens/project-screen/ProjectScreen";
 import { IPSCR, KeyOf, spacing } from "utils";
 import AboutScreen from "../about-screen/AboutScreen";
 import HomeScreen from "../home-screen/HomeScreen";
+import { nConfig } from "./navigation-utils";
 
 const screenProps = {
-  Home: { component: HomeScreen },
+  Home: {
+    component: HomeScreen,
+    options: nConfig.noHeader,
+  },
   About: { component: AboutScreen },
+  Project: {
+    component: ProjectScreen,
+    options: ({ route }) =>
+      nConfig.headerTitle({ route, param: "project", key: "title" }),
+  },
 };
+
 const __PRIMARY = R.keys(screenProps);
 export type enum_PrimaryStack = KeyOf<typeof screenProps>;
 
@@ -69,7 +80,7 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
           name={screen}
           {...screenProps[screen]}
           key={screen}
-          options={screen == "Home" ? screenOptions : null}
+          // options={screen == "Home" ? screenOptions : screen.options}
         />
       ))}
     </Stack.Navigator>

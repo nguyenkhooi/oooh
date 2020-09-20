@@ -1,34 +1,87 @@
 import { Text } from "@ui-kitten/components";
 import { sstyled } from "components";
-// import { moderateScale } from "react-native-size-matters";
 import { withTheme } from "engines";
 import * as React from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { IPSCR, moderateScale, spacing, useDimension } from "utils";
-import { Navigation } from "../_navigation/navigation-utils";
-import S_Carou from "./S_Carou";
+import { Navigation } from "screens";
+import { IPSCR, spacing, useDimension } from "utils";
 import { S_PortfolioGrid } from "./S_PortfolioGrid";
 
 export default withTheme((props: IPSCR) => {
   const {
-    navigation,
     theme: { C },
   } = props;
+  const scrollRef = React.useRef<ScrollView>();
   // const [C, dark] = useTheme();
-  const [width] = useDimension("window");
+  const [width, height] = useDimension("window");
+
+  let sectionsPos: number[] = [];
+  function scrollToIndex(n: number) {
+    if (sectionsPos.length > n) {
+      const targeted_y = sectionsPos
+        .slice(0, n)
+        .reduce((total, element) => total + element);
+
+      scrollRef.current.scrollTo({
+        x: 0,
+        y: targeted_y,
+        animated: true,
+      });
+    } else {
+      alert("Out of Max Index");
+    }
+  }
+  const S_Home = [
+    {
+      component: (
+        <$_Intro
+          {...props}
+          scrollToWork={() => {
+            scrollToIndex(1);
+          }}
+        />
+      ),
+    },
+    {
+      component: <$_PortfolioGrid {...props} />,
+    },
+    {
+      component: <$_PortfolioGrid {...props} />,
+    },
+  ];
+
+  // const [arr, setArr] = React.useState([]);
+
   return (
-    <ScrollView style={{ backgroundColor: C.background }}>
-      <$_Intro {...props} />
-      <$_PortfolioGrid {...props} />
-      <$_Carou {...props} />
+    <ScrollView
+      ref={scrollRef}
+      style={{ backgroundColor: C.background }}
+      pagingEnabled={true}
+    >
+      {S_Home.map((section, key) => (
+        <View
+          key={key}
+          onLayout={(event) => {
+            const layout = event.nativeEvent.layout;
+            sectionsPos[key] = layout.height;
+          }}
+        >
+          {section.component}
+          <Text>{key}</Text>
+        </View>
+      ))}
     </ScrollView>
   );
 });
 
-const $_Intro = (props) => {
+interface d$_Intro extends IPSCR {
+  scrollToWork(): void;
+}
+const $_Intro = (props: d$_Intro) => {
   const {
     theme: { C },
+    scrollToWork,
   } = props;
   const [width, height] = useDimension("window");
   return (
@@ -36,11 +89,8 @@ const $_Intro = (props) => {
       style={{
         height: height,
         justifyContent: "flex-start",
-        // alignItems: "center",
-        // paddingHorizontal: spacing(3),
         paddingHorizontal: spacing(6),
         paddingTop: height * 0.3,
-        // backgroundColor: C.background,
       }}
     >
       <Text category={"h1"}>Hi, I'm Khoi 👋</Text>
@@ -52,7 +102,7 @@ const $_Intro = (props) => {
         As an experienced mobile/web developer and UX manager, I love doing both
         <LinkText> experimental work </LinkText>
         and
-        <LinkText> real products. </LinkText>
+        <LinkText onPress={scrollToWork}> real products. </LinkText>
         See things I follow on my blog or read
         <LinkText onPress={() => Navigation.navigate("About")}>
           {" "}
@@ -66,31 +116,9 @@ const $_Intro = (props) => {
 
 const $_PortfolioGrid = S_PortfolioGrid;
 
-const $_Carou = S_Carou;
-
-const $_HichShow = (props) => {
-  return (
-    <View>
-      <Text category={"h1"}>Hich</Text>
-      <Text category={"s1"} style={{ fontSize: 31 }}>
-        I'm an experienced mobile/web developer and UX manager in the US and
-        Vietnam. I love doing both
-      </Text>
-    </View>
-  );
-};
-
-const Layout = sstyled(ScrollView)({
-  flex: 1,
-  alignItems: "flex-start",
-  justifyContent: "center",
-  paddingHorizontal: moderateScale(20),
-  // backgroundColor: C.background,
-});
-
 const LinkText = sstyled(Text)({
   fontSize: 31,
-  fontWeight: "500",
+  fontWeight: "600",
   fontStyle: "italic",
 });
 

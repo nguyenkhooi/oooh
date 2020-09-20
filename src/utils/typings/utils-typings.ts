@@ -8,10 +8,10 @@ import { colors } from "utils";
  */
 export type ValueOf<T> = T[keyof T];
 export type KeyOf<T> = keyof T;
-export type PROPS_Colors = typeof colors;
-export type ENUM_Palette = ValueOf<PROPS_Colors>;
+export type dColors = typeof colors;
+export type ENUM_Palette = ValueOf<dColors>;
 
-export type IPtypoCarp = {
+export type dTypo = {
   largeTitle: TextStyle;
   headline: TextStyle;
   title: TextStyle;
@@ -27,8 +27,8 @@ export type IPtypoCarp = {
 /**
  * fr theme
  */
-export interface PROPS_HichTheme {
-  C: PROPS_Colors;
+export interface dTheme {
+  C: dColors;
   dark?: boolean;
 }
 

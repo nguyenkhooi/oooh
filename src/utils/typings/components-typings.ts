@@ -1,9 +1,9 @@
-import { PROPS_Colors, PROPS_HichTheme } from ".";
+import { dColors } from ".";
 
 export interface PROPSCOMP {
   testID?: string;
   theme?: {
-    C: PROPS_Colors;
+    C: dColors;
     dark?: boolean;
   };
 }

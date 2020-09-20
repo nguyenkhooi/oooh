@@ -1,7 +1,7 @@
 import * as R from "ramda";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { CalendarTheme } from "react-native-calendars";
-import { PROPS_Colors } from "utils/typings";
+import { dColors } from "utils/typings";
 // import { typoCarp } from "./index";
 import { getBottomSpace, scale } from "../helpers";
 import { colors } from "./color";
@@ -10,7 +10,7 @@ import { spacing } from "./spacing";
 /**
  * A set of preset styles for the codebase, based on Carmec's design system
  */
-export const PRE = (C?: PROPS_Colors) => {
+export const PRE = (C?: dColors) => {
   let _C = R.isNil(C) ? colors : C;
   return {
     HEADER: {

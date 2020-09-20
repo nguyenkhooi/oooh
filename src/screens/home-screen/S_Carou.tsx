@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Carousel from "react-native-snap-carousel"; // Version can be specified in package.json
 import { useDimension } from "utils";
 
@@ -8,7 +8,8 @@ for (let i = 0; i < 10; i++) {
   DATA.push(i);
 }
 
-export default function S_Carou() {
+export default function S_Carou(props) {
+  const { data, itemRender } = props;
   const [index, setIndex] = React.useState(0);
 
   const [width, height] = useDimension("window");
@@ -23,8 +24,11 @@ export default function S_Carou() {
   React.useEffect(
     function dynamicSize() {
       const SLIDER_WIDTH = width;
-      const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9);
-      const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 0.4);
+      const ITEM_WIDTH =
+        width <= 1000
+          ? Math.round(SLIDER_WIDTH * 0.5)
+          : Math.round(SLIDER_WIDTH * 0.3);
+      const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 2);
       const TRANSLATE_VALUE = Math.round((SLIDER_WIDTH * 0.3) / 4);
       setDim({
         sliderWidth: SLIDER_WIDTH,
@@ -46,7 +50,7 @@ export default function S_Carou() {
           },
         ]}
       >
-        <Text style={styles.itemLabel}>{width}</Text>
+        {itemRender(item)}
       </View>
     );
   }
@@ -56,15 +60,18 @@ export default function S_Carou() {
       <Carousel
         // ref={(c) => (this.carousel = c)}
         layout={"default"}
-        data={DATA}
+        data={data}
         renderItem={_renderItem}
         sliderWidth={_dim.sliderWidth}
         itemWidth={_dim.width}
-        inactiveSlideShift={0}
+        // inactiveSlideShift={0}
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
-        autoplay={true}
-        loop={true}
+        // enableMomentum={true}
+        enableSnap={true}
+        pagingEnabled={true}
+        // autoplay={true}
+        // loop={true}
       />
       {/* <Text style={styles.counter}>{_dim.width + "  " + _dim.height}</Text> */}
     </View>
@@ -78,7 +85,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "dodgerblue",
+    // backgroundColor: "dodgerblue",
   },
   itemLabel: {
     color: "white",

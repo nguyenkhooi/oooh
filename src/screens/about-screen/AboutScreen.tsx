@@ -14,13 +14,16 @@ export default withTheme((props: IPSCR) => {
     <View
       style={{
         flex: 1,
-        alignItems: "flex-start",
-        justifyContent: "center",
-        paddingHorizontal: spacing(5),
+        // paddingHorizontal: spacing(6),
+        paddingTop: spacing(5),
         backgroundColor: C.background,
       }}
     >
-      <Text category={"s2"} style={{ fontSize: 31 }} adjustsFontSizeToFit>
+      <Text
+        category={"s2"}
+        style={{ fontSize: 20, paddingHorizontal: spacing(6) }}
+        adjustsFontSizeToFit
+      >
         Khoi Tran is a data analyst, app developer, designer, and visual
         thinker. Believing the future as a result of all past experience, he did
         not settle down on earning a stats degree, but also inspired himself to

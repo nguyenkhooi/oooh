@@ -166,7 +166,7 @@ export const nConfig = {
     config: { duration: 1000 },
   },
   noHeader: { headerShown: false },
-  headerTitle: ({ route }) => ({ title: route.params.title }),
+  headerTitle: ({ route, param, key }) => ({ title: route.params[param][key] }),
   noTitle: {
     headerTitleStyle: {
       fontSize: 0,

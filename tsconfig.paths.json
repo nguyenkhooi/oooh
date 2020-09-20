@@ -3,11 +3,11 @@
     "baseUrl": "./src",
     "paths": {
       "*": ["*"],
-      "screens": ["./src/screens"],
-      "assets": ["./src/assets"],
-      "utils": ["./src/utils"],
-      "components": ["./src/components"],
-      "engines": ["./src/engines"]
+      "screens": ["./screens"],
+      "assets": ["./assets"],
+      "utils": ["./utils"],
+      "components": ["./components"],
+      "engines": ["./engines"]
     }
   }
 }

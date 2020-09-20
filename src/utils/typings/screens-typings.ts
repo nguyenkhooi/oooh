@@ -1,6 +1,6 @@
 import { NavigationInjectedProps } from "react-navigation"
-import { PROPS_HichTheme } from "."
+import { dTheme } from "."
 
 export interface IPSCR extends NavigationInjectedProps<{}> {
-  theme: PROPS_HichTheme
+  theme: dTheme
 }
