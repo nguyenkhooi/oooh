@@ -68,7 +68,6 @@ export default withTheme((props: IPSCR) => {
           }}
         >
           {section.component}
-          <Text>{key}</Text>
         </View>
       ))}
     </ScrollView>
@@ -90,7 +89,7 @@ const $_Intro = (props: d$_Intro) => {
         height: height,
         justifyContent: "flex-start",
         paddingHorizontal: spacing(6),
-        paddingTop: height * 0.3,
+        paddingTop: spacing(3, "v"),
       }}
     >
       <Text category={"h1"}>Hi, I'm Khoi 👋</Text>
