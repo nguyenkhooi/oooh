@@ -1,12 +1,11 @@
-import { Text, useTheme } from "@ui-kitten/components";
+import { Text } from "@ui-kitten/components";
 import { sstyled } from "components";
 // import { moderateScale } from "react-native-size-matters";
 import { withTheme } from "engines";
 import * as React from "react";
-import { Dimensions, SafeAreaView, View } from "react-native";
+import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Carousel from "react-native-snap-carousel";
-import { IPSCR, moderateScale, useDimension } from "utils";
+import { IPSCR, moderateScale, spacing, useDimension } from "utils";
 import { Navigation } from "../_navigation/navigation-utils";
 import S_Carou from "./S_Carou";
 import { S_PortfolioGrid } from "./S_PortfolioGrid";
@@ -19,14 +18,10 @@ export default withTheme((props: IPSCR) => {
   // const [C, dark] = useTheme();
   const [width] = useDimension("window");
   return (
-    <ScrollView
-      style={{ backgroundColor: C.background }}
-      contentContainerStyle={{}}
-    >
+    <ScrollView style={{ backgroundColor: C.background }}>
       <$_Intro {...props} />
       <$_PortfolioGrid {...props} />
       <$_Carou {...props} />
-      <$_HichShow {...props} />
     </ScrollView>
   );
 });
@@ -39,17 +34,21 @@ const $_Intro = (props) => {
   return (
     <View
       style={{
-        height: Dimensions.get("window").height,
+        height: height,
         justifyContent: "flex-start",
         // alignItems: "center",
-        // paddingHorizontal: spacing[3],
-        paddingHorizontal: width * 0.3,
+        // paddingHorizontal: spacing(3),
+        paddingHorizontal: spacing(6),
         paddingTop: height * 0.3,
         // backgroundColor: C.background,
       }}
     >
       <Text category={"h1"}>Hi, I'm Khoi 👋</Text>
-      <Text category={"s1"} style={{ fontSize: moderateScale(15) }}>
+      <Text
+        category={"s1"}
+        style={{ fontSize: 31 }}
+        adjustsFontSizeToFit={true}
+      >
         As an experienced mobile/web developer and UX manager, I love doing both
         <LinkText> experimental work </LinkText>
         and
@@ -73,7 +72,7 @@ const $_HichShow = (props) => {
   return (
     <View>
       <Text category={"h1"}>Hich</Text>
-      <Text category={"s1"} style={{ fontSize: moderateScale(20) }}>
+      <Text category={"s1"} style={{ fontSize: 31 }}>
         I'm an experienced mobile/web developer and UX manager in the US and
         Vietnam. I love doing both
       </Text>
@@ -90,7 +89,7 @@ const Layout = sstyled(ScrollView)({
 });
 
 const LinkText = sstyled(Text)({
-  fontSize: moderateScale(20),
+  fontSize: 31,
   fontWeight: "500",
   fontStyle: "italic",
 });

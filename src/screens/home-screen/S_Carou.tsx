@@ -1,6 +1,6 @@
 import React from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
-import Carousel, { getInputRangeFromIndexes } from "react-native-snap-carousel"; // Version can be specified in package.json
+import { StyleSheet, Text, View } from "react-native";
+import Carousel from "react-native-snap-carousel"; // Version can be specified in package.json
 import { useDimension } from "utils";
 
 const DATA: readonly string[] = [];
@@ -66,7 +66,7 @@ export default function S_Carou() {
         autoplay={true}
         loop={true}
       />
-      <Text style={styles.counter}>{_dim.width + "  " + _dim.height}</Text>
+      {/* <Text style={styles.counter}>{_dim.width + "  " + _dim.height}</Text> */}
     </View>
   );
 }

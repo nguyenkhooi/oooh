@@ -16,7 +16,7 @@ export const PRE = (C?: PROPS_Colors) => {
     HEADER: {
       SECTIONS: {
         // ...typoCarp.subtitleEmphasized,
-        paddingVertical: spacing[2],
+        paddingVertical: spacing(2),
         color: _C.grey900,
       } as TextStyle,
       SEPARATOR_CTNR: {
@@ -25,7 +25,7 @@ export const PRE = (C?: PROPS_Colors) => {
         height: scale(30),
         justifyContent: "space-between",
         alignItems: "center",
-        paddingHorizontal: spacing[3],
+        paddingHorizontal: spacing(3),
       } as ViewStyle,
     },
 
@@ -40,8 +40,8 @@ export const PRE = (C?: PROPS_Colors) => {
       style: {
         backgroundColor: _C.transparent,
         // alignItems: "flex-start",
-        // paddingLeft: spacing[5],
-        // paddingVertical: spacing[2],
+        // paddingLeft: spacing(5),
+        // paddingVertical: spacing(2),
         // borderWidth: 1,
         // borderColor: _C.line,
         // borderRadius: scale(10),
@@ -51,7 +51,7 @@ export const PRE = (C?: PROPS_Colors) => {
         // ...typoCarp.subtitleEmphasized,
         textAlign: "left",
         color: _C.text,
-        // marginVertical: spacing[2],
+        // marginVertical: spacing(2),
       } as TextStyle,
     },
     BUTTON: {
@@ -137,7 +137,7 @@ export const PRE = (C?: PROPS_Colors) => {
     },
     FORM: {
       CTNR_SAFE: {
-        paddingHorizontal: spacing[5],
+        paddingHorizontal: spacing(5),
         backgroundColor: _C.surface,
         // paddingBottom: getBottomSpace("safe"),
       } as ViewStyle,
@@ -198,12 +198,12 @@ export const PRE = (C?: PROPS_Colors) => {
       } as ViewStyle,
     },
     SCR: {
-      paddingHorizontal: spacing[3],
+      paddingHorizontal: spacing(3),
       // paddingBottom: getBottomSpace("safe"),
     } as ViewStyle,
     /** General footer CTNR */
     FOOTER: {
-      paddingHorizontal: spacing[5],
+      paddingHorizontal: spacing(5),
       paddingBottom: getBottomSpace("safe"),
     } as ViewStyle,
   };

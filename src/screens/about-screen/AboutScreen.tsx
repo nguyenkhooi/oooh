@@ -1,10 +1,10 @@
-import { Button, Text } from "@ui-kitten/components";
-import * as React from "react";
-import { View } from "react-native";
+import { Text } from "@ui-kitten/components";
+import { sstyled } from "components";
 // import { moderateScale } from "react-native-size-matters";
 import { withTheme } from "engines";
-import { IPSCR, moderateScale } from "utils";
-import { sstyled } from "components";
+import * as React from "react";
+import { View } from "react-native";
+import { IPSCR, moderateScale, spacing } from "utils";
 
 export default withTheme((props: IPSCR) => {
   const {
@@ -16,11 +16,11 @@ export default withTheme((props: IPSCR) => {
         flex: 1,
         alignItems: "flex-start",
         justifyContent: "center",
-        paddingHorizontal: moderateScale(20),
+        paddingHorizontal: spacing(5),
         backgroundColor: C.background,
       }}
     >
-      <Text category={"s2"} style={{ fontSize: moderateScale(20) }}>
+      <Text category={"s2"} style={{ fontSize: 31 }} adjustsFontSizeToFit>
         Khoi Tran is a data analyst, app developer, designer, and visual
         thinker. Believing the future as a result of all past experience, he did
         not settle down on earning a stats degree, but also inspired himself to

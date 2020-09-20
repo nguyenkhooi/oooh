@@ -39,7 +39,7 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
 
     headerTitleAlign: "center",
     headerRight: (props) => (
-      <View style={{ paddingHorizontal: spacing[3] }}>
+      <View style={{ paddingHorizontal: spacing(3) }}>
         <Toggle
           checked={dark}
           onChange={() => setTheme(dark ? "themeLight" : "themeDark")}

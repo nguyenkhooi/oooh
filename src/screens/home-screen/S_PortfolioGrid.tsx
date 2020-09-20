@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
-import { IPSCR, useDimension } from "utils";
+import { IPSCR, spacing, useDimension } from "utils";
+// import { IPSCR, spacing, useDimension } from "utils";
 
 export function S_PortfolioGrid(props: IPSCR) {
   const {
@@ -237,9 +238,11 @@ export function S_PortfolioGrid(props: IPSCR) {
     },
   ]);
 
+  const [width] = useDimension("window");
+
   return (
     <FlatGrid
-      itemDimension={useDimension("window")[0] * 0.3}
+      itemDimension={width <= 1000 ? width * 0.9 : width * 0.3}
       data={items}
       style={styles.gridView}
       // staticDimension={300}
@@ -291,13 +294,14 @@ export function S_PortfolioGrid(props: IPSCR) {
 const styles = StyleSheet.create({
   gridView: {
     marginTop: 10,
+    marginHorizontal: spacing(5),
     // flex: 1,
   },
   itemContainer: {
     justifyContent: "flex-end",
     borderRadius: 5,
     padding: 10,
-    height: 150,
+    height: 300,
   },
   itemName: {
     fontSize: 16,

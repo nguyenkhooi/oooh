@@ -1,29 +1,25 @@
 import {
   NavigationContainer,
-  NavigationContainerRef,
-  TabRouterOptions,
+  NavigationContainerRef
 } from "@react-navigation/native";
 import {
   createStackNavigator,
-  HeaderBackButton,
-  TransitionPresets,
+
+  TransitionPresets
 } from "@react-navigation/stack";
-import * as React from "react";
-import { withTheme } from "engines";
-// import { HomeScreen } from "../home-screen/HomeScreen";
-import { nConfig } from "./navigation-utils";
+import {
+  StackNavigationOptions
+} from "@react-navigation/stack/lib/typescript/src/types";
 import { Text, Toggle } from "@ui-kitten/components";
+import { withTheme } from "engines";
+import * as R from "ramda";
+import * as React from "react";
 import { View } from "react-native";
 import { KeyOf, spacing } from "utils";
-import { ScreenStackProps } from "react-native-screens";
-import {
-  StackNavigationConfig,
-  StackNavigationOptions,
-} from "@react-navigation/stack/lib/typescript/src/types";
-import HomeScreen from "../home-screen/HomeScreen";
+// import { HomeScreen } from "../home-screen/HomeScreen";
+import { nConfig } from "./navigation-utils";
 // import { PrimaryStack } from "./primary-navigator";
 import { PrimaryStack } from "./primary.navigator";
-import * as R from "ramda";
 
 const screenProps = {
   Primary: { component: PrimaryStack },
@@ -55,7 +51,7 @@ export const RootStack = withTheme((props) => {
 
     headerTitleAlign: "center",
     headerRight: (props) => (
-      <View style={{ paddingHorizontal: spacing[3] }}>
+      <View style={{ paddingHorizontal: spacing(3) }}>
         <Toggle
           checked={dark}
           onChange={() => setTheme(dark ? "themeLight" : "themeDark")}

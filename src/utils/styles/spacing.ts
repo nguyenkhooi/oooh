@@ -1,4 +1,4 @@
-import { IS_WEB, scale } from "../helpers";
+import { Dimensions } from "react-native";
 
 /**
  * NOTE TO DEVS:
@@ -48,14 +48,25 @@ import { IS_WEB, scale } from "../helpers";
  *
  * 8 = massive - an uncomfortable amount of whitespace
  */
-export const spacing = [
-  IS_WEB ? scale(0) : scale(0),
-  IS_WEB ? scale(104) : scale(4),
-  IS_WEB ? scale(108) : scale(8),
-  IS_WEB ? scale(112) : scale(12),
-  IS_WEB ? scale(116) : scale(16),
-  IS_WEB ? scale(124) : scale(24),
-  IS_WEB ? scale(132) : scale(32),
-  IS_WEB ? scale(148) : scale(48),
-  IS_WEB ? scale(164) : scale(64),
-];
+
+export const spacing = (
+  rate: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9,
+  direction: "h" | "v" = "h",
+  width?: number,
+  height?: number
+) => {
+  const _height = height || Dimensions.get("screen").height;
+  const _width = width || Dimensions.get("screen").width;
+  return Math.pow(direction == "h" ? _height : _width, rate / 10);
+};
+// export const spacing = [
+//   IS_WEB ? scale(0) : scale(0),
+//   IS_WEB ? scale(104) : scale(4),
+//   IS_WEB ? scale(108) : scale(8),
+//   IS_WEB ? scale(112) : scale(12),
+//   IS_WEB ? scale(116) : scale(16),
+//   IS_WEB ? scale(124) : scale(24),
+//   IS_WEB ? scale(132) : scale(32),
+//   IS_WEB ? scale(148) : scale(48),
+//   IS_WEB ? scale(164) : scale(64),
+// ];
