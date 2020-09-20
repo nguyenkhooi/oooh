@@ -105,3 +105,10 @@ export function withTheme<P extends IPwithTheme>(
     }
   };
 }
+
+export const useTheme = withTheme((props) => {
+  const {
+    theme: { C, dark },
+  } = props;
+  return [C, dark];
+});
