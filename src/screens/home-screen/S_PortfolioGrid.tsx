@@ -1,11 +1,11 @@
 import { Text } from "@ui-kitten/components";
+import { TouchableWeb, TouchableWebProps } from "components";
 import { useSheets } from "engines/hooks";
 import React from "react";
 import {
   ActivityIndicator,
   ImageBackground,
   TextStyle,
-  TouchableOpacity,
   View,
   ViewStyle
 } from "react-native";
@@ -23,6 +23,8 @@ export function S_PortfolioGrid(props: IPSCR) {
   console.log("data: ", data);
 
   const [width] = useDimension("window");
+
+  const [_color, setColor] = React.useState(0);
 
   if (!!data) {
     return (
@@ -42,26 +44,56 @@ export function S_PortfolioGrid(props: IPSCR) {
           // fixed
           spacing={10}
           renderItem={({ item }) => (
-            <TouchableOpacity
+            <GridCtnr
+              {...props}
               onPress={() => Navigation.navigate("Project", { project: item })}
-            >
-              <ImageBackground
-                source={{ uri: item.thumbnail }}
-                style={[
-                  SS().ITEM_CTNR,
-                  { backgroundColor: item.color, overflow: "hidden" },
-                ]}
-              >
-                <Text style={SS().itemName}>{item.title}</Text>
-                <Text style={SS().itemCode}>{item.label}</Text>
-              </ImageBackground>
-            </TouchableOpacity>
+              item={item}
+            />
           )}
         />
       </View>
     );
   } else return <ActivityIndicator />;
 }
+
+interface dGridCtnr extends TouchableWebProps, IPSCR {
+  item: { thumbnail: string; title: string; color: string; label: string };
+}
+const GridCtnr = (props: dGridCtnr) => {
+  const {
+    theme: { C },
+    onPress,
+    item,
+  } = props;
+  const [_borderWidth, setBorderWidth] = React.useState(0);
+  return (
+    <TouchableWeb
+      onMouseEnter={(e) => {
+        setBorderWidth(6);
+      }}
+      onMouseLeave={(e) => {
+        setBorderWidth(0);
+      }}
+      onPress={onPress}
+    >
+      <ImageBackground
+        source={{ uri: item.thumbnail }}
+        style={[
+          SS().ITEM_CTNR,
+          {
+            backgroundColor: item.color,
+            overflow: "hidden",
+            borderWidth: _borderWidth,
+            borderColor: item.color,
+          },
+        ]}
+      >
+        <Text style={SS().itemName}>{item.title}</Text>
+        <Text style={SS().itemCode}>{item.label}</Text>
+      </ImageBackground>
+    </TouchableWeb>
+  );
+};
 
 const SS = (C?: dColors) => {
   return {
