@@ -3,23 +3,23 @@ import { TouchableWeb, TouchableWebProps } from "components";
 import { useSheets } from "engines/hooks";
 import React from "react";
 import {
-  ActivityIndicator,
-  ImageBackground,
-  TextStyle,
-  View,
-  ViewStyle
+    ActivityIndicator,
+    ImageBackground,
+    TextStyle,
+    View,
+    ViewStyle
 } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 import { Navigation } from "screens/_navigation";
 import { dColors, IPSCR, scale, spacing, useDimension } from "utils";
 
-export function S_PortfolioGrid(props: IPSCR) {
+export function S_ExperimentalGrid(props: IPSCR) {
   const {
     theme: { C },
   } = props;
   const { data, fields: keys } = useSheets(
-    "1QkECelCYiVVxopwsZD2UsLYZdmd1vFzFc0-pLb71rX8"
-    // "1kJ5X_pxlo56w62-m6O7-antd2IVs36-vuf8sEJtsyCE"
+    // "1QkECelCYiVVxopwsZD2UsLYZdmd1vFzFc0-pLb71rX8"
+    "1kJ5X_pxlo56w62-m6O7-antd2IVs36-vuf8sEJtsyCE"
   );
   console.log("data: ", data);
 
@@ -35,7 +35,7 @@ export function S_PortfolioGrid(props: IPSCR) {
           category={"h3"}
           style={{ paddingHorizontal: spacing(6), color: C.dim }}
         >
-          Work
+          Experimental
         </Text>
         <FlatGrid
           itemDimension={width <= 1000 ? width * 0.9 : width * 0.3}
