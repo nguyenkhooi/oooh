@@ -1,7 +1,7 @@
 import {
   NavigationContainerRef,
   NavigationState,
-  PartialState
+  PartialState,
 } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import { BackHandler } from "react-native";
@@ -11,8 +11,33 @@ import { enum_RootStack } from "./root.navigator";
 
 type navigationRoute = enum_PrimaryStack | enum_RootStack;
 
+/**
+ * Setup navigation-service
+ * 
+ * @example
+ * import {
+    AppNavigator,
+    canExit,
+    setRootNavigation,
+    useBackButtonHandler,
+    useNavigationPersistence
+  } from "screens";
+  
+  function App() {
+    [...]
+    const navigationRef = React.useRef<NavigationContainerRef>();
+
+    setRootNavigation(navigationRef);
+    useBackButtonHandler(navigationRef, canExit);
+    const {
+      initialNavigationState,
+      onNavigationStateChange,
+    } = useNavigationPersistence();
+    [...]
+  }
+ */
 export const Navigation = {
-  navigate(name: navigationRoute) {
+  navigate(name: navigationRoute, param?: any) {
     name; // eslint-disable-line no-unused-expressions
   },
   goBack() {}, // eslint-disable-line @typescript-eslint/no-empty-function
