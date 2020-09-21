@@ -7,6 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Navigation } from "screens";
 import { img } from "assets";
 import { IPSCR, spacing, useDimension } from "utils";
+import { S_ExperimentalGrid } from "./S_ExperimentalGrid";
 import { S_PortfolioGrid } from "./S_PortfolioGrid";
 
 export default withTheme((props: IPSCR) => {
@@ -43,11 +44,17 @@ export default withTheme((props: IPSCR) => {
           scrollToWork={() => {
             scrollToIndex(1);
           }}
+          scrollToExp={() => {
+            scrollToIndex(2);
+          }}
         />
       ),
     },
     {
       component: <$_PortfolioGrid {...props} />,
+    },
+    {
+      component: <$_ExperimentalGrid {...props} />,
     },
   ];
 
@@ -82,6 +89,7 @@ const $_Intro = (props: d$_Intro) => {
   const {
     theme: { C },
     scrollToWork,
+    scrollToExp,
   } = props;
   const [width, height] = useDimension("window");
   const [_color, setColor] = React.useState(C.text);
@@ -132,6 +140,7 @@ const $_Intro = (props: d$_Intro) => {
 };
 
 const $_PortfolioGrid = S_PortfolioGrid;
+const $_ExperimentalGrid = S_ExperimentalGrid;
 
 const LinkText = sstyled(Text)({
   fontSize: 31,

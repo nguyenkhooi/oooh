@@ -7,7 +7,7 @@ import Tabletop from "tabletop";
  * @see https://medium.com/@ryan.mcnierney/using-react-google-sheets-as-your-cms-294c02561d59
  */
 export function useSheets(key: string) {
-  const [_keys, setKeys] = React.useState(null);
+  const [_fields, setFields] = React.useState(null);
   const [_data, setData] = React.useState(null);
   React.useEffect(function fetchData() {
     Tabletop.init({
@@ -15,11 +15,11 @@ export function useSheets(key: string) {
       key: key,
       callback: (googleData: React.SetStateAction<null>) => {
         setData(googleData);
-        setKeys(R.keys(googleData[0]));
+        setFields(R.keys(googleData[0]));
       },
       simpleSheet: true,
     });
   }, []);
 
-  return { data: _data, keys: _keys };
+  return { data: _data, fields: _fields };
 }
