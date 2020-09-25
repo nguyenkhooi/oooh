@@ -1,20 +1,20 @@
 {
   "files": {
-    "app.js": "/oooh/static/js/app.7f6c49c9.chunk.js",
-    "app.js.map": "/oooh/static/js/app.7f6c49c9.chunk.js.map",
+    "app.js": "/oooh/static/js/app.bb2ff9dd.chunk.js",
+    "app.js.map": "/oooh/static/js/app.bb2ff9dd.chunk.js.map",
     "runtime~app.js": "/oooh/static/js/runtime~app.b7111475.js",
     "runtime~app.js.map": "/oooh/static/js/runtime~app.b7111475.js.map",
-    "static/js/2.e01f2db6.chunk.js": "/oooh/static/js/2.e01f2db6.chunk.js",
-    "static/js/2.e01f2db6.chunk.js.map": "/oooh/static/js/2.e01f2db6.chunk.js.map",
+    "static/js/2.bd45f98f.chunk.js": "/oooh/static/js/2.bd45f98f.chunk.js",
+    "static/js/2.bd45f98f.chunk.js.map": "/oooh/static/js/2.bd45f98f.chunk.js.map",
     "index.html": "/oooh/index.html",
     "manifest.json": "/oooh/manifest.json",
     "serve.json": "/oooh/serve.json",
-    "static/js/2.e01f2db6.chunk.js.LICENSE.txt": "/oooh/static/js/2.e01f2db6.chunk.js.LICENSE.txt",
-    "static/js/app.7f6c49c9.chunk.js.LICENSE.txt": "/oooh/static/js/app.7f6c49c9.chunk.js.LICENSE.txt"
+    "static/js/2.bd45f98f.chunk.js.LICENSE.txt": "/oooh/static/js/2.bd45f98f.chunk.js.LICENSE.txt",
+    "static/js/app.bb2ff9dd.chunk.js.LICENSE.txt": "/oooh/static/js/app.bb2ff9dd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime~app.b7111475.js",
-    "static/js/2.e01f2db6.chunk.js",
-    "static/js/app.7f6c49c9.chunk.js"
+    "static/js/2.bd45f98f.chunk.js",
+    "static/js/app.bb2ff9dd.chunk.js"
   ]
 }
