@@ -4,10 +4,11 @@ import {
   TransitionPresets
 } from "@react-navigation/stack";
 import { Text, Toggle } from "@ui-kitten/components";
+import { img } from "assets";
 import { withTheme } from "engines";
 import * as R from "ramda";
 import React from "react";
-import { View } from "react-native";
+import { Image, View } from "react-native";
 import ProjectScreen from "screens/project-screen/ProjectScreen";
 import { IPSCR, KeyOf, spacing } from "utils";
 import AboutScreen from "../about-screen/AboutScreen";
@@ -47,7 +48,9 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
       //   fontFamily: CIRCULAR_BOLD,
       fontSize: 0,
     },
-
+    headerBackImage: (props) => (
+      <Image source={img.x} style={{ width: 20, height: 20 }} />
+    ),
     headerTitleAlign: "center",
     headerRight: (props) => (
       <View style={{ paddingHorizontal: spacing(3) }}>
@@ -61,11 +64,17 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
     ),
   };
 
-  const config = {
+  const config: StackNavigationOptions = {
     ...TransitionPresets.ModalPresentationIOS,
     gestureEnabled: true,
     cardOverlayEnabled: true,
     animationEnabled: true,
+    headerBackImage: (props) => (
+      <Image
+        source={img.x}
+        style={{ marginLeft: spacing(2), width: 14, height: 14 }}
+      />
+    ),
   };
 
   return (

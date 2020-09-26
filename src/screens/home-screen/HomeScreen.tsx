@@ -2,10 +2,9 @@ import { Text } from "@ui-kitten/components";
 import { sstyled, TouchableWeb } from "components";
 import { withTheme } from "engines";
 import * as React from "react";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Navigation } from "screens";
-import { img } from "assets";
 import { IPSCR, spacing, useDimension } from "utils";
 import { S_ExperimentalGrid } from "./S_ExperimentalGrid";
 import { S_PortfolioGrid } from "./S_PortfolioGrid";
@@ -84,6 +83,7 @@ export default withTheme((props: IPSCR) => {
 
 interface d$_Intro extends IPSCR {
   scrollToWork(): void;
+  scrollToExp(): void;
 }
 const $_Intro = (props: d$_Intro) => {
   const {
@@ -110,12 +110,12 @@ const $_Intro = (props: d$_Intro) => {
           setColor(C.text);
         }}
       >
-        {_color == C.dim && (
+        {/* {_color == C.dim && (
           <Image
             source={{ uri: img.khoi_1 }}
             style={{ width: 200, height: 200, borderRadius: 200 }}
           ></Image>
-        )}
+        )} */}
 
         <Text category={"h1"}>Hi, I'm Khoi 👋</Text>
         <Text
@@ -124,7 +124,7 @@ const $_Intro = (props: d$_Intro) => {
           adjustsFontSizeToFit={true}
         >
           A young mobile developer and UX manager who love doing both
-          <LinkText> experimental work </LinkText>
+          <LinkText onPress={scrollToExp}> experimental work </LinkText>
           and
           <LinkText onPress={scrollToWork}> real products. </LinkText>
           {"\n"}See things I follow on my blog or read
