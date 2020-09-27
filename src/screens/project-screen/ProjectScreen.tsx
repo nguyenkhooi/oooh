@@ -5,11 +5,11 @@ import { withTheme } from "engines";
 import * as R from "ramda";
 import * as React from "react";
 import {
-    Image,
-    ImageStyle,
-    ScrollView,
-    TextStyle,
-    ViewStyle
+  Image,
+  ImageStyle,
+  ScrollView,
+  TextStyle,
+  ViewStyle
 } from "react-native";
 import S_Carou from "screens/home-screen/S_Carou";
 import { dColors, IPSCR, scale, spacing, useDimension } from "utils";
@@ -20,13 +20,14 @@ export default withTheme((props: IPSCR) => {
     route,
   } = props;
   const {
-    project: { body, headline },
+    project: { body00, body01, headline },
   } = route.params;
 
   const [_images, setImages] = React.useState([
     "https://cnnphilippines.com/.imaging/mte/demo-cnn-new/960/dam/Life/Culture-Life/2019/02/12/dating-apps/Dating-Apps.png/jcr:content/Dating%20Apps.png",
   ]);
-  React.useEffect(function sortImages() {
+  const [_bodies, setBodies] = React.useState([""]);
+  React.useEffect(function sortContents() {
     const dbImages = [
       route.params.project.image00,
       route.params.project.image01,
@@ -39,8 +40,22 @@ export default withTheme((props: IPSCR) => {
       route.params.project.image08,
       route.params.project.image09,
     ];
+    const dbBodies = [
+      route.params.project.body00,
+      route.params.project.body01,
+      route.params.project.body02,
+      route.params.project.body03,
+      route.params.project.body04,
+      route.params.project.body05,
+      route.params.project.body06,
+      route.params.project.body07,
+      route.params.project.body08,
+      route.params.project.body09,
+    ];
     const newImg = R.reject((img) => !img || img == "", dbImages);
+    const newBodies = R.reject((b) => !b || b == "", dbBodies);
     setImages(newImg);
+    setBodies(newBodies);
   }, []);
 
   const [width, height] = useDimension("window");
@@ -76,9 +91,29 @@ export default withTheme((props: IPSCR) => {
         }}
         adjustsFontSizeToFit
       >
-        {body}
+        {body00}
         {/* {JSON.stringify(_images)} */}
       </Text>
+
+      <S_Carou
+        {...props}
+        data={_bodies}
+        itemRender={(body: string) => (
+          <Text
+            category={"s2"}
+            style={{
+              fontSize: 20,
+              color: "white",
+              textAlign: "center",
+              paddingHorizontal: spacing(6),
+            }}
+            adjustsFontSizeToFit
+          >
+            {body}
+            {/* {JSON.stringify(_images)} */}
+          </Text>
+        )}
+      />
 
       <S_Carou
         {...props}
