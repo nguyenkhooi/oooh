@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import Carousel from "react-native-snap-carousel"; // Version can be specified in package.json
+import Carousel, { CarouselProps } from "react-native-snap-carousel"; // Version can be specified in package.json
 import { IS_WEB, useDimension } from "utils";
 
 const DATA: readonly string[] = [];
@@ -8,7 +8,7 @@ for (let i = 0; i < 10; i++) {
   DATA.push(i);
 }
 
-export default function S_Carou(props) {
+export default function S_Carou(props: CarouselProps<{}>) {
   const { data, itemRender } = props;
   const [index, setIndex] = React.useState(0);
 

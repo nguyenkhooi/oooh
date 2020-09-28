@@ -5,10 +5,12 @@ import { withTheme } from "engines";
 import * as R from "ramda";
 import * as React from "react";
 import {
+  FlatList,
   Image,
   ImageStyle,
   ScrollView,
   TextStyle,
+  View,
   ViewStyle
 } from "react-native";
 import S_Carou from "screens/home-screen/S_Carou";
@@ -22,7 +24,6 @@ export default withTheme((props: IPSCR) => {
   const {
     project: { body00, body01, headline },
   } = route.params;
-
   const [_images, setImages] = React.useState([
     "https://cnnphilippines.com/.imaging/mte/demo-cnn-new/960/dam/Life/Culture-Life/2019/02/12/dating-apps/Dating-Apps.png/jcr:content/Dating%20Apps.png",
   ]);
@@ -57,8 +58,9 @@ export default withTheme((props: IPSCR) => {
     setImages(newImg);
     setBodies(newBodies);
   }, []);
-
+  const [_activeSlide, setActiveSlide] = React.useState(0);
   const [width, height] = useDimension("window");
+  const refBody = React.useRef<FlatList>(null);
   return (
     <ScrollView
       style={{
@@ -73,6 +75,7 @@ export default withTheme((props: IPSCR) => {
           fontSize: 26,
           color: "white",
           textAlign: "center",
+          justifyContent: "center",
           marginBottom: spacing(1),
           paddingHorizontal: spacing(6),
         }}
@@ -81,37 +84,35 @@ export default withTheme((props: IPSCR) => {
         {headline}
         {/* {JSON.stringify(_images)} */}
       </Text>
-      <Text
-        category={"s2"}
-        style={{
-          fontSize: 20,
-          color: "white",
-          textAlign: "center",
-          paddingHorizontal: spacing(6),
-        }}
-        adjustsFontSizeToFit
-      >
-        {body00}
-        {/* {JSON.stringify(_images)} */}
-      </Text>
-
-      <S_Carou
-        {...props}
+      <FlatList
+        ref={refBody}
+        horizontal={true}
         data={_bodies}
-        itemRender={(body: string) => (
-          <Text
-            category={"s2"}
+        style={{ paddingHorizontal: spacing(2) }}
+        renderItem={({ item }) => (
+          <View
             style={{
-              fontSize: 20,
-              color: "white",
-              textAlign: "center",
-              paddingHorizontal: spacing(6),
+              width: width,
+              alignItems: "center",
+              paddingHorizontal: spacing(2),
+              borderWidth: 1,
+              borderColor: "white",
             }}
-            adjustsFontSizeToFit
           >
-            {body}
-            {/* {JSON.stringify(_images)} */}
-          </Text>
+            <Text
+              category={"s2"}
+              style={{
+                fontSize: 20,
+                color: "white",
+                textAlign: "center",
+                paddingHorizontal: spacing(6),
+              }}
+              adjustsFontSizeToFit
+            >
+              {item}
+              {/* {JSON.stringify(_images)} */}
+            </Text>
+          </View>
         )}
       />
 
@@ -126,6 +127,7 @@ export default withTheme((props: IPSCR) => {
             // style={[SS().ITEM_CTNR]}
           ></Image>
         )}
+        onS
       />
 
       {/* <FlatGrid
