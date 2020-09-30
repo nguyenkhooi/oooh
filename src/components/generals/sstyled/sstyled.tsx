@@ -1,8 +1,9 @@
 import React from "react";
+import { IPSCR } from "utils";
 
 /**
  * @example
- * const RoundedButton = withStyle(Button)({
+ * const RoundedButton = sstyled(Button)((C)=> {
     marginTop: 8,
     borderRadius: 10,
     borderWidth: 0
@@ -19,7 +20,7 @@ export function sstyled<Component extends React.ElementType>(
           props: React.ComponentProps<Component> & Props
         ) => React.ComponentProps<Component>["style"])
   ): React.FC<React.ComponentProps<Component> & Props> => {
-    return (props) => {
+    return (props: dSstyled) => {
       return React.createElement(WrappedComponent, {
         ...props,
         style: {
@@ -29,4 +30,12 @@ export function sstyled<Component extends React.ElementType>(
       });
     };
   };
+}
+
+/**
+ * Ideally, sstyled() component will inherit screen props,
+ * so if we have universal screen props, extend dSstyled with it
+ */
+interface dSstyled extends IPSCR {
+  style: any;
 }

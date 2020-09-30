@@ -1,10 +1,9 @@
 import { Text } from "@ui-kitten/components";
-import { sstyled } from "components";
 // import { moderateScale } from "react-native-size-matters";
 import { withTheme } from "engines";
 import * as React from "react";
 import { View } from "react-native";
-import { IPSCR, moderateScale, spacing } from "utils";
+import { IPSCR, spacing } from "utils";
 
 export default withTheme((props: IPSCR) => {
   const {
@@ -53,15 +52,4 @@ export default withTheme((props: IPSCR) => {
       </Text> */}
     </View>
   );
-});
-
-const LinkText = sstyled(Text)({
-  fontSize: moderateScale(20),
-  fontWeight: "500",
-  fontStyle: "italic",
-});
-
-const B = sstyled(Text)({
-  fontSize: moderateScale(18),
-  fontWeight: "700",
 });

@@ -116,7 +116,6 @@ const $_Intro = (props: d$_Intro) => {
             style={{ width: 200, height: 200, borderRadius: 200 }}
           ></Image>
         )} */}
-
         <Text category={"h1"}>Hi, I'm Khoi 👋</Text>
         <Text
           category={"s1"}
@@ -124,11 +123,17 @@ const $_Intro = (props: d$_Intro) => {
           adjustsFontSizeToFit={true}
         >
           A young mobile developer and UX manager who love doing both
-          <LinkText onPress={scrollToExp}> experimental work </LinkText>
+          <LinkText {...props} onPress={scrollToExp}>
+            {" "}
+            experimental work{" "}
+          </LinkText>
           and
-          <LinkText onPress={scrollToWork}> real products. </LinkText>
+          <LinkText {...props} onPress={scrollToWork}>
+            {" "}
+            real products.{" "}
+          </LinkText>
           {"\n"}See things I follow on my blog or read
-          <LinkText onPress={() => Navigation.navigate("About")}>
+          <LinkText {...props} onPress={() => Navigation.navigate("About")}>
             {" "}
             a bit{" "}
           </LinkText>
@@ -142,10 +147,10 @@ const $_Intro = (props: d$_Intro) => {
 const $_PortfolioGrid = S_PortfolioGrid;
 const $_ExperimentalGrid = S_ExperimentalGrid;
 
-const LinkText = sstyled(Text)({
+const LinkText = sstyled(Text)(() => ({
   fontSize: 31,
   fontWeight: "600",
   fontStyle: "italic",
-});
+}));
 
 // export default withTheme(HomeScreen);
