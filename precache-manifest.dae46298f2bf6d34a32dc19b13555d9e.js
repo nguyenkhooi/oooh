@@ -1,26 +1,26 @@
 self.__precacheManifest = [
   {
-    "revision": "808b3f897d3d90f2c845",
-    "url": "/oooh/static/js/app.adb489e2.chunk.js"
+    "revision": "bf9717d283ebb4ba3389",
+    "url": "/oooh/static/js/app.d4723000.chunk.js"
   },
   {
     "revision": "a4e2c0eb00a75adda9a1",
     "url": "/oooh/static/js/runtime~app.b7111475.js"
   },
   {
-    "revision": "6e5dae950da1bc93968d",
-    "url": "/oooh/static/js/2.06b10441.chunk.js"
+    "revision": "6e70954ed4e668cfb690",
+    "url": "/oooh/static/js/2.b0e0bfd3.chunk.js"
   },
   {
     "revision": "5475821d7b5d3bf0086ccdcad3536a6b",
     "url": "/oooh/static/media/khoi-1.afd2c1e0.jpg"
   },
   {
-    "revision": "96a710c63e67a570ba8ff568ff8dafc9",
-    "url": "/oooh/static/media/x-icon.0b19bb14.png"
+    "revision": "7e1d8c229a65317083b27e85da632047",
+    "url": "/oooh/static/media/x-icon.e89ccce9.png"
   },
   {
-    "revision": "ea9e7dedf6fa267ba3ed579c0eb2c63e",
+    "revision": "9c1e85933d19271e513ab88e28ce3437",
     "url": "/oooh/index.html"
   },
   {
@@ -37,11 +37,11 @@ self.__precacheManifest = [
   },
   {
     "revision": "145340a93f81660dd3fa6426052670af",
-    "url": "/oooh/static/js/app.adb489e2.chunk.js.LICENSE.txt"
+    "url": "/oooh/static/js/app.d4723000.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "74e8a15bcd34336e8467c9615a6dcce2",
-    "url": "/oooh/static/js/2.06b10441.chunk.js.LICENSE.txt"
+    "revision": "b7eb157b762779b30849c8fbf3d532e1",
+    "url": "/oooh/static/js/2.b0e0bfd3.chunk.js.LICENSE.txt"
   },
   {
     "revision": "3784c501eaaca612901c3e68ece70a7b",
