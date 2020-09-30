@@ -1,4 +1,6 @@
 import { Spinner, Text } from "@ui-kitten/components";
+import { sstyled } from "components";
+import { Txt } from "components/generals/txt/Txt";
 import { withTheme } from "engines";
 import * as R from "ramda";
 import React, { useState } from "react";
@@ -26,7 +28,7 @@ const ProjectScreen = withTheme((props) => {
     theme: { C },
     route,
   } = props;
-  const [width, height] = useDimension();
+  const { width, height } = useDimension();
 
   // const imageWidth: number = height * 0.4 - 20;
   const imageWidth: number = width < 1000 ? width * 0.8 : width * 0.3;
@@ -146,21 +148,9 @@ const ProjectScreen = withTheme((props) => {
         paddingTop: spacing(5),
       }}
     >
-      <Text
-        category={"h1"}
-        style={{
-          fontSize: 26,
-          color: "white",
-          textAlign: "center",
-          justifyContent: "center",
-          marginBottom: spacing(1),
-          paddingHorizontal: spacing(6),
-        }}
-        adjustsFontSizeToFit
-      >
+      <HeadlineTxt {...props} category={"h1"} adjustFontSizeToFit>
         {headline}
-        {/* {JSON.stringify(_images)} */}
-      </Text>
+      </HeadlineTxt>
 
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <RNMasonryScroll
@@ -183,14 +173,7 @@ const ProjectScreen = withTheme((props) => {
       </View>
     </ScrollView>
   ) : (
-    <View
-      style={{
-        backgroundColor: projectColor,
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1,
-      }}
-    >
+    <View style={{ ...SS(C).LOADING_CTNR, backgroundColor: projectColor }}>
       <Spinner size="giant" />
     </View>
   );
@@ -198,20 +181,27 @@ const ProjectScreen = withTheme((props) => {
 
 export default ProjectScreen;
 
+const HeadlineTxt = sstyled(Txt)(({ theme: { C } }) => ({
+  // fontSize: 26,
+  color: C.text01,
+  textAlign: "center",
+  justifyContent: "center",
+  marginBottom: spacing(2),
+  paddingHorizontal: spacing(6),
+}));
+
 const SS = (C?: dColors) => {
   return {
-    header: {
-      flexDirection: "row",
-      alignItems: "center",
+    LOADING_CTNR: {
       justifyContent: "center",
-      margin: 8,
+      alignItems: "center",
+      flex: 1,
     } as ViewStyle,
-
     IMG_CTNR: {
       margin: 10,
       borderRadius: 10,
       overflow: "hidden",
-      backgroundColor: "silver",
+      backgroundColor: C?.surface01,
     } as ImageStyle,
     evenColumnStyle: {} as ViewStyle,
     oddColumnStyleVertical: { marginTop: 60 } as ViewStyle,

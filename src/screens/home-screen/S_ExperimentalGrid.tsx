@@ -3,11 +3,11 @@ import { TouchableWeb, TouchableWebProps } from "components";
 import { useSheets } from "engines/hooks";
 import React from "react";
 import {
-    ActivityIndicator,
-    ImageBackground,
-    TextStyle,
-    View,
-    ViewStyle
+  ActivityIndicator,
+  ImageBackground,
+  TextStyle,
+  View,
+  ViewStyle
 } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 import { Navigation } from "screens/_navigation";
@@ -17,13 +17,10 @@ export function S_ExperimentalGrid(props: IPSCR) {
   const {
     theme: { C },
   } = props;
-  const { data, fields: keys } = useSheets(
-    // "1QkECelCYiVVxopwsZD2UsLYZdmd1vFzFc0-pLb71rX8"
-    "1kJ5X_pxlo56w62-m6O7-antd2IVs36-vuf8sEJtsyCE"
-  );
-  console.log("data: ", data);
+  const { data } = useSheets(0, "Exp");
+  // console.log("data: ", data);
 
-  const [width] = useDimension("window");
+  const { width } = useDimension("window");
 
   const [_color, setColor] = React.useState(0);
 

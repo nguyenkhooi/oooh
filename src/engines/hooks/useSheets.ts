@@ -3,21 +3,26 @@ import * as React from "react";
 import Tabletop from "tabletop";
 
 /**
- *
+ * Hook that use Tabletop to fetch data from google Sheets
  * @see https://medium.com/@ryan.mcnierney/using-react-google-sheets-as-your-cms-294c02561d59
  */
-export function useSheets(key: string) {
+export function useSheets(
+  /** 0 for default Sheets file */
+  key: 0 | string,
+  sheetName: "Work" | "Exp" | "About" = "Work"
+) {
+  const _key = key == 0 ? "1QkECelCYiVVxopwsZD2UsLYZdmd1vFzFc0-pLb71rX8" : key;
   const [_fields, setFields] = React.useState(null);
   const [_data, setData] = React.useState<rSheets[]>([]);
   React.useEffect(function fetchData() {
     Tabletop.init({
-      // key: '1Bh5AV7LwiiWOlK6G-kVDX8YiWJNEyLrrYU6WEYnb_lg',
-      key: key,
-      callback: (googleData: React.SetStateAction<null>) => {
-        setData(googleData);
-        setFields(R.keys(googleData[0]));
-      },
+      key: _key,
+      /** set `wanted` with specific `sheetName` to get data only from that sheet */
+      wanted: [sheetName],
       simpleSheet: true,
+    }).then(async (googleData: React.SetStateAction<rSheets[]>) => {
+      setData(googleData);
+      setFields(R.keys(googleData[0]));
     });
   }, []);
 

@@ -15,11 +15,11 @@ export default withTheme((props: IPSCR) => {
   } = props;
   const scrollRef = React.useRef<ScrollView>(null);
   // const [C, dark] = useTheme();
-  const [width, height] = useDimension("window");
+  const { width, height } = useDimension("window");
 
   let sectionsPos: number[] = [];
   function scrollToIndex(n: number) {
-    scrollRef.current?.scrollTo({ x: 0, y: height * n, animated: true });
+    scrollRef.current?.scrollTo({ x: 0, y: height * n, animated: true });f
     //* deprecated due to inconsistent sectionsPos[] change due to dimensions' change
     // if (sectionsPos.length > n) {
     //   const targeted_y = sectionsPos
@@ -92,7 +92,7 @@ const $_Intro = (props: d$_Intro) => {
     scrollToWork,
     scrollToExp,
   } = props;
-  const [width, height] = useDimension("window");
+  const { width, height } = useDimension("window");
   const [_color, setColor] = React.useState(C.text);
   return (
     <Animatable.View
@@ -128,7 +128,7 @@ const $_Intro = (props: d$_Intro) => {
         </Text>
         <Text
           category={"s1"}
-          style={[{ fontSize: 25 }, { color: _color }]}
+          style={[{ fontSize: 29 }, { color: _color }]}
           adjustsFontSizeToFit={true}
         >
           A young mobile developer and UX manager who love doing both
@@ -157,9 +157,9 @@ const $_PortfolioGrid = S_PortfolioGrid;
 const $_ExperimentalGrid = S_ExperimentalGrid;
 
 const LinkText = sstyled(Text)({
-  fontSize: 27,
+  fontSize: 29,
   fontWeight: "600",
   fontStyle: "italic",
-}));
+});
 
 // export default withTheme(HomeScreen);

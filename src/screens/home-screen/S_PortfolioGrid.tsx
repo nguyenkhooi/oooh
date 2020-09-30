@@ -17,13 +17,10 @@ export function S_PortfolioGrid(props: IPSCR) {
   const {
     theme: { C },
   } = props;
-  const { data, fields: keys } = useSheets(
-    "1QkECelCYiVVxopwsZD2UsLYZdmd1vFzFc0-pLb71rX8"
-    // "1kJ5X_pxlo56w62-m6O7-antd2IVs36-vuf8sEJtsyCE"
-  );
+  const { data } = useSheets(0, "Work");
   console.log("data: ", data);
 
-  const [width] = useDimension("window");
+  const { width } = useDimension("window");
 
   const [_color, setColor] = React.useState(0);
 

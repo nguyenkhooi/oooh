@@ -12,7 +12,7 @@ export default function S_Carou(props: CarouselProps<{}>) {
   const { data, itemRender, onSnapToItem } = props;
   const [index, setIndex] = React.useState(0);
 
-  const [width, height] = useDimension("window");
+  const { width, height } = useDimension("window");
 
   const [_dim, setDim] = React.useState({
     sliderWidth: width,
