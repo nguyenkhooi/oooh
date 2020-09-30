@@ -3,12 +3,11 @@ import {
   StackNavigationOptions,
   TransitionPresets
 } from "@react-navigation/stack";
-import { Text, Toggle } from "@ui-kitten/components";
 import { img } from "assets";
 import { withTheme } from "engines";
 import * as R from "ramda";
 import React from "react";
-import { Image, View } from "react-native";
+import { Image, TextStyle } from "react-native";
 import ProjectScreen from "screens/project-screen/ProjectScreen";
 import { IPSCR, KeyOf, spacing } from "utils";
 import AboutScreen from "../about-screen/AboutScreen";
@@ -38,41 +37,23 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
     setTheme,
   } = props;
 
-  const screenOptions: StackNavigationOptions = {
-    headerStyle: {
-      elevation: 0,
-      backgroundColor: C.background,
-      borderBottomWidth: 0,
-    },
-    headerTitleStyle: {
-      //   fontFamily: CIRCULAR_BOLD,
-      fontSize: 0,
-    },
-    headerBackImage: (props) => (
-      <Image source={img.x} style={{ width: 20, height: 20 }} />
-    ),
-    headerTitleAlign: "center",
-    headerRight: (props) => (
-      <View style={{ paddingHorizontal: spacing(3) }}>
-        <Toggle
-          checked={dark}
-          onChange={() => setTheme(dark ? "themeLight" : "themeDark")}
-        >
-          <Text category={"h6"}>{dark ? "🌒" : "🌞"}</Text>
-        </Toggle>
-      </View>
-    ),
-  };
-
   const config: StackNavigationOptions = {
     ...TransitionPresets.ModalPresentationIOS,
     gestureEnabled: true,
     cardOverlayEnabled: true,
     animationEnabled: true,
+    headerStyle: {
+      elevation: 0,
+      backgroundColor: C.background01,
+      borderBottomWidth: 0,
+    },
+    headerTitleStyle: {
+      color: C.text01,
+    } as TextStyle,
     headerBackImage: (props) => (
       <Image
         source={img.x}
-        style={{ marginLeft: spacing(2), width: 14, height: 14 }}
+        style={{ marginLeft: spacing(2), width: 16, height: 16 }}
       />
     ),
   };

@@ -2,8 +2,8 @@ import { Text } from "@ui-kitten/components";
 import { sstyled, TouchableWeb } from "components";
 import { withTheme } from "engines";
 import * as React from "react";
-import { View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, View } from "react-native";
+import * as Animatable from "react-native-animatable";
 import { Navigation } from "screens";
 import { IPSCR, spacing, useDimension } from "utils";
 import { S_ExperimentalGrid } from "./S_ExperimentalGrid";
@@ -13,13 +13,13 @@ export default withTheme((props: IPSCR) => {
   const {
     theme: { C },
   } = props;
-  const scrollRef = React.useRef<ScrollView>();
+  const scrollRef = React.useRef<ScrollView>(null);
   // const [C, dark] = useTheme();
   const [width, height] = useDimension("window");
 
   let sectionsPos: number[] = [];
   function scrollToIndex(n: number) {
-    scrollRef.current.scrollTo({ x: 0, y: height * n, animated: true });
+    scrollRef.current?.scrollTo({ x: 0, y: height * n, animated: true });
     //* deprecated due to inconsistent sectionsPos[] change due to dimensions' change
     // if (sectionsPos.length > n) {
     //   const targeted_y = sectionsPos
@@ -87,14 +87,17 @@ interface d$_Intro extends IPSCR {
 }
 const $_Intro = (props: d$_Intro) => {
   const {
-    theme: { C },
+    theme: { C, dark },
+    setTheme,
     scrollToWork,
     scrollToExp,
   } = props;
   const [width, height] = useDimension("window");
   const [_color, setColor] = React.useState(C.text);
   return (
-    <View
+    <Animatable.View
+      animation="fadeInUp"
+      delay={1000}
       style={{
         height: height,
         justifyContent: "center",
@@ -117,10 +120,15 @@ const $_Intro = (props: d$_Intro) => {
           ></Image>
         )} */}
 
-        <Text category={"h1"}>Hi, I'm Khoi 👋</Text>
+        <Text
+          category={"h1"}
+          onPress={() => setTheme(dark ? "themeLight" : "themeDark")}
+        >
+          Hi, I'm Khoi 👋
+        </Text>
         <Text
           category={"s1"}
-          style={[{ fontSize: 31 }, { color: _color }]}
+          style={[{ fontSize: 25 }, { color: _color }]}
           adjustsFontSizeToFit={true}
         >
           A young mobile developer and UX manager who love doing both
@@ -135,7 +143,7 @@ const $_Intro = (props: d$_Intro) => {
           about me.
         </Text>
       </TouchableWeb>
-    </View>
+    </Animatable.View>
   );
 };
 
@@ -143,7 +151,7 @@ const $_PortfolioGrid = S_PortfolioGrid;
 const $_ExperimentalGrid = S_ExperimentalGrid;
 
 const LinkText = sstyled(Text)({
-  fontSize: 31,
+  fontSize: 27,
   fontWeight: "600",
   fontStyle: "italic",
 });

@@ -16,12 +16,12 @@ export default withTheme((props: IPSCR) => {
         flex: 1,
         // paddingHorizontal: spacing(6),
         paddingTop: spacing(5),
-        backgroundColor: C.background,
+        backgroundColor: C.background01,
       }}
     >
       <Text
         category={"s2"}
-        style={{ fontSize: 20, paddingHorizontal: spacing(6) }}
+        style={{ color: C.text01, fontSize: 20, paddingHorizontal: spacing(6) }}
         adjustsFontSizeToFit
       >
         Khoi Tran is a data analyst, app developer, designer, and visual

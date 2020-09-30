@@ -9,7 +9,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 export default function S_Carou(props: CarouselProps<{}>) {
-  const { data, itemRender } = props;
+  const { data, itemRender, onSnapToItem } = props;
   const [index, setIndex] = React.useState(0);
 
   const [width, height] = useDimension("window");
@@ -59,13 +59,17 @@ export default function S_Carou(props: CarouselProps<{}>) {
     <View>
       <Carousel
         // ref={(c) => (this.carousel = c)}
-        layout={"default"}
+        {...props}
+        // layout={"default"}
         data={data}
         renderItem={_renderItem}
         sliderWidth={_dim.sliderWidth}
         itemWidth={_dim.width}
         // inactiveSlideShift={0}
-        onSnapToItem={(index) => setIndex(index)}
+        onSnapToItem={(index) => {
+          setIndex(index);
+          !!onSnapToItem && onSnapToItem(index);
+        }}
         useScrollView={true}
         // enableMomentum={true}
         enableSnap={true}
