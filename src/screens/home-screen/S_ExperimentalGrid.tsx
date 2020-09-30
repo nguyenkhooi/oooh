@@ -22,8 +22,6 @@ export function S_ExperimentalGrid(props: IPSCR) {
 
   const { width } = useDimension("window");
 
-  const [_color, setColor] = React.useState(0);
-
   if (!!data) {
     return (
       <View style={{}}>

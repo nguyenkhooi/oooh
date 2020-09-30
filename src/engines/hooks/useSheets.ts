@@ -4,7 +4,9 @@ import Tabletop from "tabletop";
 
 /**
  * Hook that use Tabletop to fetch data from google Sheets
+ * @version 0.1.4
  * @see https://medium.com/@ryan.mcnierney/using-react-google-sheets-as-your-cms-294c02561d59
+ *
  */
 export function useSheets(
   /** 0 for default Sheets file */

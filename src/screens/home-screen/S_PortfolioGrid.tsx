@@ -18,12 +18,8 @@ export function S_PortfolioGrid(props: IPSCR) {
     theme: { C },
   } = props;
   const { data } = useSheets(0, "Work");
-  console.log("data: ", data);
-
+  // console.log("data: ", data);
   const { width } = useDimension("window");
-
-  const [_color, setColor] = React.useState(0);
-
   if (!!data) {
     return (
       <View style={{}}>
