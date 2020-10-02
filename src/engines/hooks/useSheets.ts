@@ -11,7 +11,7 @@ import Tabletop from "tabletop";
 export function useSheets(
   /** 0 for default Sheets file */
   key: 0 | string,
-  sheetName: "Work" | "Exp" | "About" = "Work"
+  sheetName: "Work" | "Exp" | "About" | "Ringading_Exp" = "Work"
 ) {
   const _key = key == 0 ? "1QkECelCYiVVxopwsZD2UsLYZdmd1vFzFc0-pLb71rX8" : key;
   const [_fields, setFields] = React.useState(null);

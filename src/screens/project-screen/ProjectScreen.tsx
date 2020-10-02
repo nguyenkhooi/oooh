@@ -1,12 +1,13 @@
 import { Spinner, Text } from "@ui-kitten/components";
-import { sstyled } from "components";
+import { sstyled, SwipeDeck } from "components";
 import { Txt } from "components/generals/txt/Txt";
-import { withTheme } from "engines";
+import { useSheets, withTheme } from "engines";
 import * as R from "ramda";
 import React, { useState } from "react";
 import {
   FlatList,
   ImageStyle,
+  Linking,
   ScrollView,
   TextStyle,
   View,
@@ -22,7 +23,7 @@ const { createAnimatableComponent } = Animatable;
 
 const AnimatableView = createAnimatableComponent(View);
 
-const ProjectScreen = withTheme((props) => {
+function ProjectScreen(props) {
   const {
     navigation,
     theme: { C },
@@ -144,9 +145,9 @@ const ProjectScreen = withTheme((props) => {
     <ScrollView
       style={{
         backgroundColor: C.background01,
-
         paddingTop: spacing(5),
       }}
+      contentContainerStyle={{ justifyContent: "center", alignItems: "center" }}
     >
       <HeadlineTxt {...props} category={"h1"} adjustFontSizeToFit>
         {headline}
@@ -171,15 +172,95 @@ const ProjectScreen = withTheme((props) => {
           })}
         </RNMasonryScroll>
       </View>
+      <$_RingadingDeck
+        {...props}
+        visible={route.params["project"]["title"] == "Ringading"}
+      />
     </ScrollView>
   ) : (
     <View style={{ ...SS(C).LOADING_CTNR, backgroundColor: projectColor }}>
       <Spinner size="giant" />
     </View>
   );
-});
+}
 
-export default ProjectScreen;
+export default withTheme(ProjectScreen);
+
+const $_RingadingDeck = (props) => {
+  const { visible } = props;
+  const { data } = useSheets(0, "Ringading_Exp");
+  const { width } = useDimension();
+  React.useEffect(
+    function fetchData() {
+      setDeckData(data);
+    },
+    [data]
+  );
+  const [deckData, setDeckData] = React.useState(data);
+  return (
+    visible &&
+    !!deckData[0] && (
+      <Animatable.View
+        animation="fadeInUp"
+        delay={1000}
+        style={{
+          // padding: spacing(5),
+          flexDirection: width < 1000 ? "column" : "row",
+          alignItems: "center",
+          alignContent: "center",
+        }}
+      >
+        <View
+          style={{
+            // flex: 1,
+            justifyContent: "flex-start",
+            width: spacing(8),
+
+            alignItems: "center",
+          }}
+        >
+          <Txt
+            category="h1"
+            style={{ color: "white", textAlign: "center" }}
+            onPress={() =>
+              Linking.openURL(
+                "https://snack.expo.io/@nguyenkhooi/swipedeck-mods"
+              )
+            }
+          >
+            Try it!
+          </Txt>
+          <Txt
+            category="p1"
+            style={{ color: "white", fontSize: 28, textAlign: "center" }}
+          >
+            Try to swipe the deck, yup who you like and nah who you don't
+          </Txt>
+          <Txt
+            category="h6"
+            appearance="info"
+            style={{ textAlign: "center" }}
+            onPress={() => setDeckData(data)}
+          >
+            Reset Deck
+          </Txt>
+        </View>
+        <SwipeDeck
+          {...props}
+          containerStyle={{
+            width: width < 1000 ? width * 0.8 : width * 0.4,
+            height: width < 1000 ? width * 0.8 : width * 0.4,
+          }}
+          cardStyle={{
+            width: width < 1000 ? width * 0.6 : width * 0.2,
+            height: width < 1000 ? width * 0.8 : width * 0.4,
+          }}
+          data={deckData}
+        />
+      </Animatable.View>
+    )
+  );
+};
 
 const HeadlineTxt = sstyled(Txt)(({ theme: { C } }) => ({
   // fontSize: 26,
