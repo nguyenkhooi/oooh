@@ -1,15 +1,17 @@
 import { Text } from "@ui-kitten/components";
-import { TouchableWeb, TouchableWebProps } from "components";
+import { Txt, TouchableWeb, TouchableWebProps } from "components";
 import { useSheets } from "engines/hooks";
+import { type } from "ramda";
 import React from "react";
 import {
   ActivityIndicator,
   ImageBackground,
   TextStyle,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
+import { Placeholder, ShineOverlay, PlaceholderMedia } from "rn-placeholder";
 import { Navigation } from "screens/_navigation";
 import { dColors, IPSCR, scale, spacing, useDimension } from "utils";
 
@@ -22,16 +24,16 @@ export function S_ExperimentalGrid(props: IPSCR) {
 
   const { width } = useDimension("window");
 
-  if (!!data) {
-    return (
-      <View style={{}}>
-        {/* <Text>{JSON.stringify(keys)}</Text> */}
-        <Text
-          category={"h3"}
-          style={{ paddingHorizontal: spacing(6), color: C.dim }}
-        >
-          Experimental
-        </Text>
+  return (
+    <View style={{}}>
+      {/* <Text>{JSON.stringify(keys)}</Text> */}
+      <Text
+        category={"h3"}
+        style={{ paddingHorizontal: spacing(6), color: C.dim }}
+      >
+        Experimental
+      </Text>
+      {!!data ? (
         <FlatGrid
           itemDimension={width <= 1000 ? width * 0.9 : width * 0.3}
           data={data}
@@ -47,22 +49,31 @@ export function S_ExperimentalGrid(props: IPSCR) {
             />
           )}
         />
-      </View>
-    );
-  } else return <ActivityIndicator />;
+      ) : (
+        <View
+          style={{ ...SS().GRID_CTNR, alignSelf: "flex-start", width: 500 }}
+        >
+          <GridCtnr {...props} type="placeholder" />
+        </View>
+      )}
+    </View>
+  );
 }
 
 interface dGridCtnr extends TouchableWebProps, IPSCR {
-  item: { thumbnail: string; title: string; color: string; label: string };
+  item?: { thumbnail: string; title: string; color: string; label: string };
+  type?: "placeholder";
 }
 const GridCtnr = (props: dGridCtnr) => {
   const {
     theme: { C },
     onPress,
     item,
+    type,
   } = props;
   const [_borderWidth, setBorderWidth] = React.useState(0);
-  return (
+  const { width } = useDimension("window");
+  return type != "placeholder" ? (
     <TouchableWeb
       onMouseEnter={(e) => {
         setBorderWidth(6);
@@ -73,21 +84,30 @@ const GridCtnr = (props: dGridCtnr) => {
       onPress={onPress}
     >
       <ImageBackground
-        source={{ uri: item.thumbnail }}
+        source={{ uri: item?.thumbnail }}
         style={[
           SS().ITEM_CTNR,
           {
-            backgroundColor: item.color,
+            backgroundColor: item?.color,
             overflow: "hidden",
             borderWidth: _borderWidth,
-            borderColor: item.color,
+            borderColor: item?.color,
           },
         ]}
       >
-        <Text style={SS().itemName}>{item.title}</Text>
-        <Text style={SS().itemCode}>{item.label}</Text>
+        <Txt.S1 style={SS().itemName}>{item?.title}</Txt.S1>
+        <Txt.P2 style={SS().itemCode}>{item?.label}</Txt.P2>
       </ImageBackground>
     </TouchableWeb>
+  ) : (
+    <Placeholder Animation={ShineOverlay}>
+      <PlaceholderMedia
+        style={[
+          SS().ITEM_CTNR,
+          { width: width <= 1000 ? width * 0.9 : width * 0.3 },
+        ]}
+      ></PlaceholderMedia>
+    </Placeholder>
   );
 };
 
@@ -105,13 +125,13 @@ const SS = (C?: dColors) => {
       height: 300,
     } as ViewStyle,
     itemName: {
-      fontSize: scale(18),
       color: "#fff",
-      fontWeight: "600",
+      // fontSize: scale(18),
+      // fontWeight: "600",
     } as TextStyle,
     itemCode: {
       // fontWeight: "600",
-      fontSize: scale(12),
+      // fontSize: scale(12),
       color: "#fff",
     } as TextStyle,
   };

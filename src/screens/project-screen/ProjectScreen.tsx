@@ -1,6 +1,5 @@
 import { Spinner, Text } from "@ui-kitten/components";
-import { sstyled, SwipeDeck } from "components";
-import { Txt } from "components/generals/txt/Txt";
+import { sstyled, SwipeDeck, Txt } from "components";
 import { useSheets, withTheme } from "engines";
 import * as R from "ramda";
 import React, { useState } from "react";
@@ -11,7 +10,7 @@ import {
   ScrollView,
   TextStyle,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 // import { ScrollView } from "react-native-gesture-handler";
@@ -219,7 +218,7 @@ const $_RingadingDeck = (props) => {
             alignItems: "center",
           }}
         >
-          <Txt
+          <Txt.H6
             category="h1"
             style={{ color: "white", textAlign: "center" }}
             onPress={() =>
@@ -229,21 +228,21 @@ const $_RingadingDeck = (props) => {
             }
           >
             Try it!
-          </Txt>
-          <Txt
+          </Txt.H6>
+          <Txt.P1
             category="p1"
             style={{ color: "white", fontSize: 28, textAlign: "center" }}
           >
             Try to swipe the deck, yup who you like and nah who you don't
-          </Txt>
-          <Txt
+          </Txt.P1>
+          <Txt.P1
             category="h6"
             appearance="info"
             style={{ textAlign: "center" }}
             onPress={() => setDeckData(data)}
           >
             Reset Deck
-          </Txt>
+          </Txt.P1>
         </View>
         <SwipeDeck
           {...props}
@@ -262,7 +261,7 @@ const $_RingadingDeck = (props) => {
   );
 };
 
-const HeadlineTxt = sstyled(Txt)(({ theme: { C } }) => ({
+const HeadlineTxt = sstyled(Txt.H6)(({ theme: { C } }) => ({
   // fontSize: 26,
   color: C.text01,
   textAlign: "center",

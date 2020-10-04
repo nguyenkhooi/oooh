@@ -1,5 +1,4 @@
-import { Text } from "@ui-kitten/components";
-import { sstyled, TouchableWeb } from "components";
+import { sstyled, Txt, TouchableWeb } from "components";
 import { withTheme } from "engines";
 import * as React from "react";
 import { ScrollView, View } from "react-native";
@@ -15,7 +14,7 @@ export default withTheme((props: IPSCR) => {
   } = props;
   const scrollRef = React.useRef<ScrollView>(null);
   // const [C, dark] = useTheme();
-  const { width, height } = useDimension("window");
+  const { height } = useDimension("window");
 
   let sectionsPos: number[] = [];
   function scrollToIndex(n: number) {
@@ -92,7 +91,7 @@ const $_Intro = (props: d$_Intro) => {
     scrollToWork,
     scrollToExp,
   } = props;
-  const { width, height } = useDimension("window");
+  const { height } = useDimension("window");
   const [_color, setColor] = React.useState(C.text);
   return (
     <Animatable.View
@@ -106,10 +105,10 @@ const $_Intro = (props: d$_Intro) => {
       }}
     >
       <TouchableWeb
-        onMouseEnter={(e) => {
+        onMouseEnter={() => {
           setColor(C.dim);
         }}
-        onMouseLeave={(e) => {
+        onMouseLeave={() => {
           setColor(C.text);
         }}
       >
@@ -119,35 +118,27 @@ const $_Intro = (props: d$_Intro) => {
             style={{ width: 200, height: 200, borderRadius: 200 }}
           ></Image>
         )} */}
-
-        <Text
-          category={"h1"}
-          onPress={() => setTheme(dark ? "themeLight" : "themeDark")}
-        >
+        <Txt.H6 onPress={() => setTheme(dark ? "themeLight" : "themeDark")}>
           Hi, I'm Khoi 👋
-        </Text>
-        <Text
-          category={"s1"}
-          style={[{ fontSize: 29 }, { color: _color }]}
-          adjustsFontSizeToFit={true}
-        >
+        </Txt.H6>
+        <Txt.P1 style={{ color: _color }} adjustsFontSizeToFit={true}>
           A young mobile developer and UX manager who love doing both
-          <LinkText {...props} onPress={scrollToExp}>
+          <TxtLink {...props} onPress={scrollToWork}>
             {" "}
-            experimental work{" "}
-          </LinkText>
+            real products{" "}
+          </TxtLink>
           and
-          <LinkText {...props} onPress={scrollToWork}>
+          <TxtLink {...props} onPress={scrollToExp}>
             {" "}
-            real products.{" "}
-          </LinkText>
+            experimental work.{" "}
+          </TxtLink>
           {"\n"}See things I follow on my blog or read
-          <LinkText {...props} onPress={() => Navigation.navigate("About")}>
+          <TxtLink {...props} onPress={() => Navigation.navigate("About")}>
             {" "}
             a bit{" "}
-          </LinkText>
+          </TxtLink>
           about me.
-        </Text>
+        </Txt.P1>
       </TouchableWeb>
     </Animatable.View>
   );
@@ -156,9 +147,9 @@ const $_Intro = (props: d$_Intro) => {
 const $_PortfolioGrid = S_PortfolioGrid;
 const $_ExperimentalGrid = S_ExperimentalGrid;
 
-const LinkText = sstyled(Text)({
-  fontSize: 29,
-  fontWeight: "600",
+const TxtLink = sstyled(Txt.P1)({
+  // fontSize: 29,
+  fontWeight: "500",
   fontStyle: "italic",
 });
 

@@ -201,7 +201,7 @@ export const nConfig = {
     route: RouteProp<any, any>;
     param: string;
     key: string | number;
-  }) => ({ title: route.params?[param][key] }),
+  }) => ({ title: route.params[param][key] }),
   // backButtonAsX:
   noTitle: {
     headerTitleStyle: {

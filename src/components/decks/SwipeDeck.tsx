@@ -1,13 +1,13 @@
+import { Text } from "@ui-kitten/components";
 import { sstyled } from "components/generals";
-import { Txt } from "components/generals/txt/Txt";
 import React from "react";
 import {
-    Animated,
-    Image,
-    PanResponder,
-    PanResponderInstance,
-    View,
-    ViewStyle
+  Animated,
+  Image,
+  PanResponder,
+  PanResponderInstance,
+  View,
+  ViewStyle,
 } from "react-native";
 import { useDimension } from "utils";
 
@@ -298,14 +298,14 @@ export function SwipeDeck(props: dCOMPSwipeDeck) {
   );
 }
 
-const YupTxt = sstyled(Txt)({
+const YupTxt = sstyled(Text)({
   color: "#39FF14",
   fontSize: 32,
   fontWeight: "600",
   padding: 10,
 });
 
-const NahTxt = sstyled(Txt)({
+const NahTxt = sstyled(Text)({
   color: "tomato",
   fontSize: 32,
   fontWeight: "600",
