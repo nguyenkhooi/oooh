@@ -5,6 +5,7 @@
  *
  * @example
  * fn.js.ID()
+ * @version 0.10.4
  -----------------------------------------------------*/
 export * from "./core";
 export * from "./table-manipulation";

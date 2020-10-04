@@ -22,6 +22,7 @@ import * as R from "ramda";
       * @param collection - Collection of raw data
       *
  * @see https://stackoverflow.com/questions/50161078/filter-collection-based-on-values-in-array-in-ramda
+ * @version 0.7.1
  */
 export function filterByValues(
   filterKey: string,
@@ -49,8 +50,9 @@ export function filterByValues(
  * @param key - Filter Key (e.g. _id)
  *
  * @see https://ramdajs.com/docs/#pluck
+ * @version 0.7.1
  */
-export function vLookup(collection, key: string) {
+export function vLookup(collection: any[], key: string) {
   var getValue = R.pluck(key);
   return getValue(collection);
 }
@@ -69,8 +71,13 @@ export function vLookup(collection, key: string) {
     //* result: [{ _id: 4, eyes: 'blue' }]
  *
  * @see https://ramdajs.com/docs/#propEq
+ * @version 0.7.1
  */
-export function hLookup(lookupKey: string, lookupKeyValue: string, collection) {
+export function hLookup(
+  lookupKey: string,
+  lookupKeyValue: string,
+  collection: any[]
+) {
   return R.filter(R.propEq(lookupKey, lookupKeyValue), collection);
 }
 
@@ -88,12 +95,13 @@ export function hLookup(lookupKey: string, lookupKeyValue: string, collection) {
     //* result: ['blue']
  *
  * @see https://ramdajs.com/docs/#propEq
+ * @version 0.7.1
  */
 export function xLookup(
   lookupKey: string,
   lookupKeyValue: string,
   returnKey: string,
-  collection
+  collection: any[]
 ) {
   const ARR = hLookup(lookupKey, lookupKeyValue, collection);
   let RES = [];

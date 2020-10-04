@@ -14,6 +14,8 @@ import * as React from "react";
  *  |_ ThemeContext - `createContext` for global theme
  *  |_ ThemeProvider - Main provider of the theme
  *  |_ withTheme() - Wrapper function
+ * 
+ * @version 0.10.4
  *
  * @example
  *  In `app.tsx`
@@ -31,14 +33,14 @@ import * as React from "react";
     To setup theme switcher
       import {withTheme} from `engines/providers` //* can't use `engines` as `withTheme` must be imported directly
       ...
-      function ThemeSwitcherButton(props) {
+      const ThemeSwitcherButton = withTheme((props) => {
         const {theme: {C, dark}, setTheme} = props
         return (
           <Button onPress={()=> setTheme(dark? `themeLight` : `themeDark`)} >
             {dark? `Switch to Light Theme` : `Switch to Dark Theme`}
           </Button>
         )
-      }
+      })
  */
 
 export const ThemeContext = React.createContext(null);
@@ -88,9 +90,22 @@ export function ThemeProvider(props: PROPS_ThemeProvider) {
 interface IPwithTheme extends PROPSCOMP {}
 
 /**
- * @description Theme wrapper around React component to pass `theme` props and `setTheme` f(x)
+ * Theme wrapper around React component to pass `theme` props and `setTheme` f(x)
+ * 
+ * @example
+ *  import {withTheme} from `engines/providers` //* can't use `engines` as `withTheme` must be imported directly
+    ...
+    const ThemeSwitcherButton = withTheme((props) => {
+      const {theme: {C, dark}, setTheme} = props
+      return (
+        <Button onPress={()=> setTheme(dark? `themeLight` : `themeDark`)} >
+          {dark? `Switch to Light Theme` : `Switch to Dark Theme`}
+        </Button>
+      )
+    })
  *
  * @param OGComponent: React component
+ * @version 0.10.4
  */
 export function withTheme<P extends IPwithTheme>(
   OGComponent: React.ComponentType<P>

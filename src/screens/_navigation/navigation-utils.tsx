@@ -1,7 +1,9 @@
 import {
   NavigationContainerRef,
   NavigationState,
-  PartialState
+  PartialState,
+  RouteConfig,
+  RouteProp,
 } from "@react-navigation/native";
 import React, { useEffect, useRef, useState } from "react";
 import { BackHandler } from "react-native";
@@ -191,7 +193,15 @@ export const nConfig = {
     config: { duration: 1000 },
   },
   noHeader: { headerShown: false },
-  headerTitle: ({ route, param, key }) => ({ title: route.params[param][key] }),
+  headerTitle: ({
+    route,
+    param,
+    key,
+  }: {
+    route: RouteProp<any, any>;
+    param: string;
+    key: string | number;
+  }) => ({ title: route.params?[param][key] }),
   // backButtonAsX:
   noTitle: {
     headerTitleStyle: {

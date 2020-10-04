@@ -19,7 +19,7 @@ export default withTheme((props: IPSCR) => {
 
   let sectionsPos: number[] = [];
   function scrollToIndex(n: number) {
-    scrollRef.current?.scrollTo({ x: 0, y: height * n, animated: true });f
+    scrollRef.current?.scrollTo({ x: 0, y: height * n, animated: true });
     //* deprecated due to inconsistent sectionsPos[] change due to dimensions' change
     // if (sectionsPos.length > n) {
     //   const targeted_y = sectionsPos

@@ -1,13 +1,19 @@
 import React from "react";
-import { IPSCR } from "utils";
+import { dSCR } from "utils";
 
 /**
+ * "Super" styled component. 
+ * Mimicking `styled-components`, with RN props (and Typescript)
+ * 
  * @example
- * const RoundedButton = sstyled(Button)((C)=> {
+ * const RoundedButton = sstyled(Button)((p)=> {
     marginTop: 8,
     borderRadius: 10,
-    borderWidth: 0
+    borderWidth: 0,
+    backgroundColor: contrastColor(p),
     });
+ *
+ * @version 1.10.3
  * @param WrappedComponent 
  */
 export function sstyled<Component extends React.ElementType>(
@@ -36,6 +42,6 @@ export function sstyled<Component extends React.ElementType>(
  * Ideally, sstyled() component will inherit screen props,
  * so if we have universal screen props, extend dSstyled with it
  */
-interface dSstyled extends IPSCR {
+interface dSstyled extends dSCR {
   style: any;
 }

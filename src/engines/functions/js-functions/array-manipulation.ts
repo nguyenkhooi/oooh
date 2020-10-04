@@ -16,6 +16,8 @@ import * as R from "ramda";
       { _id: 2, eyes: 'brown' },
       { _id: 3, eyes: "green" }
       { _id: 4, eyes: 'blue' }]
+
+ * @version 0.7.4
  */
 export function arrayMergeNoDup(filterKey: string, collection: any[]) {
   const smartMerging = R.pipe(
