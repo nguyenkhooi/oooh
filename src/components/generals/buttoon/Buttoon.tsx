@@ -3,7 +3,7 @@ import * as R from "ramda";
 import * as React from "react";
 import { ActivityIndicator, Keyboard } from "react-native";
 import { scale } from "utils";
-// import { dIconPrimr, IconPrimr } from "../icons";
+// import { dIconOooh, IconOooh } from "../icons";
 
 /**
  * This is button component
@@ -60,7 +60,7 @@ export function Buttoon(props: P) {
         ) : (
           !R.isNil(icon) && R.isNil(icon.right) && (
             <></>
-            // <IconPrimr
+            // <IconOooh
             //   preset={`safe`}
             //   name={`arrow_left`}
             //   size={props.style.width * 0.8}
@@ -74,7 +74,7 @@ export function Buttoon(props: P) {
       //     return (
       //       !R.isNil(icon) &&
       //       !R.isNil(icon.right) && (
-      //         <IconPrimr
+      //         <IconOooh
       //           preset={`safe`}
       //           name={`arrow_left`}
       //           size={props.style.width * 0.8}
@@ -101,7 +101,7 @@ interface P extends ButtonProps {
   /**
    * @deprecated
    */
-  icon?: dIconPrimr & {
+  icon?: dIconOooh & {
     /** Is icon on the right? */
     right?: boolean;
   };
