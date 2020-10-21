@@ -53,28 +53,6 @@ export function getBottomSpace(safe?: string) {
 export const DEVICE_WIDTH = Dimensions.get("window").width;
 export const DEVICE_HEIGHT = Dimensions.get("window").height;
 
-/**
- * A hook that gets dynamic dimensions
- * @version 0.9.19
- */
-export const useDimension = (type: "screen" | "window" = "window") => {
-  const [dimensions, setDimensions] = React.useState({ window, screen });
-
-  const onChange = ({ window, screen }) => {
-    setDimensions({ window, screen });
-  };
-  React.useEffect(() => {
-    Dimensions.addEventListener("change", onChange);
-    return () => {
-      Dimensions.removeEventListener("change", onChange);
-    };
-  }, []);
-
-  const width = dimensions[type].width || Dimensions.get("window").width;
-  const height = dimensions[type].height || Dimensions.get("window").height;
-  return { width, height };
-};
-
 export const IS_ANDROID = Platform.OS === "android";
 export const IS_WEB = Platform.OS === "web";
 

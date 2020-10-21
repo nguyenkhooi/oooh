@@ -26,7 +26,7 @@ export function S_PortfolioGrid(props: IPSCR) {
   } = props;
   const { data } = useSheets(0, "Work");
   // console.log("data: ", data);
-  const { width } = useDimension("window");
+  const { WIDTH } = useDimension("window");
   // if (!!data) {
 
   return (
@@ -40,7 +40,7 @@ export function S_PortfolioGrid(props: IPSCR) {
       </Text>
       {!!data ? (
         <FlatGrid
-          itemDimension={width <= 1000 ? width * 0.9 : width * 0.3}
+          itemDimension={WIDTH <= 1000 ? WIDTH * 0.9 : WIDTH * 0.3}
           data={data}
           style={SS().GRID_CTNR}
           // staticDimension={300}
@@ -75,7 +75,7 @@ const CtnrGrid = (props: dGridCtnr) => {
     item,
   } = props;
   const [_borderWidth, setBorderWidth] = React.useState(0);
-  const { width } = useDimension("window");
+  const { WIDTH: width } = useDimension("window");
   return type != "placeholder" ? (
     <TouchableWeb
       onMouseEnter={(e) => {

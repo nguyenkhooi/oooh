@@ -1,64 +1,67 @@
 import { Text } from "@ui-kitten/components";
 // import { scale } from "utils";
 import { sstyled } from "../sstyled/sstyled";
-const scale = (number: number) => number;
 
-const H1: typeof Text = sstyled(Text)({
-  fontSize: scale(36) * 2,
+const H1: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(36),
   fontWeight: "800",
-});
-const H2: typeof Text = sstyled(Text)({
-  fontSize: scale(32) * 2,
+}));
+const H2: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(32),
   fontWeight: "800",
-});
-const H3: typeof Text = sstyled(Text)({
-  fontSize: scale(30) * 2,
+}));
+const H3: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(30),
   fontWeight: "800",
-});
-const H4: typeof Text = sstyled(Text)({
-  fontSize: scale(26) * 2,
+}));
+const H4: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(26),
   fontWeight: "800",
-});
-const H5: typeof Text = sstyled(Text)({
-  fontSize: scale(22) * 2,
+}));
+const H5: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(22),
   fontWeight: "800",
-});
-const H6: typeof Text = sstyled(Text)({
-  fontSize: scale(18) * 2,
+}));
+const H6: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(18),
   fontWeight: "800",
-});
-const S1: typeof Text = sstyled(Text)({
-  fontSize: scale(15) * 2,
+}));
+const S1: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(15),
   fontWeight: "600",
-});
-const S2: typeof Text = sstyled(Text)({
-  fontSize: scale(13) * 2,
+}));
+const S2: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(13),
   fontWeight: "600",
-});
-const P1: typeof Text = sstyled(Text)({
-  fontSize: scale(15) * 2,
+}));
+const P1: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(15),
   fontWeight: "400",
-});
-const P2: typeof Text = sstyled(Text)({
-  fontSize: scale(13) * 2,
+}));
+const P2: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(13),
   fontWeight: "400",
-});
-const C1: typeof Text = sstyled(Text)({
-  fontSize: scale(12) * 2,
-  fontWeight: "800",
-});
-const C2: typeof Text = sstyled(Text)({
-  fontSize: scale(12) * 2,
-  fontWeight: "800",
-});
+}));
+const C1: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(12),
+  fontWeight: "400",
+}));
+const C2: typeof Text = sstyled(Text)((p) => ({
+  fontSize: p.ms(12),
+  fontWeight: "400",
+}));
 
 /**
  * A text component of the project,
  * depending on ui-kitten's Text
- *
+ * ---
  * @example
+ * ```
  * <Txt.P1>👋</Txt.P1>
- * @version 0.10.4
+ * ```
+ * ---
+ * @version 0.10.20
+ * - *Support dynaDime*
  */
 export const Txt = {
   /** Heading 1 */

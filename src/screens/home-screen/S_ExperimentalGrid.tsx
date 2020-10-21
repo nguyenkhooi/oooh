@@ -22,7 +22,7 @@ export function S_ExperimentalGrid(props: IPSCR) {
   const { data } = useSheets(0, "Exp");
   // console.log("data: ", data);
 
-  const { width } = useDimension("window");
+  const { WIDTH: width } = useDimension("window");
 
   return (
     <View style={{}}>
@@ -72,7 +72,7 @@ const GridCtnr = (props: dGridCtnr) => {
     type,
   } = props;
   const [_borderWidth, setBorderWidth] = React.useState(0);
-  const { width } = useDimension("window");
+  const { WIDTH } = useDimension("window");
   return type != "placeholder" ? (
     <TouchableWeb
       onMouseEnter={(e) => {
@@ -104,7 +104,7 @@ const GridCtnr = (props: dGridCtnr) => {
       <PlaceholderMedia
         style={[
           SS().ITEM_CTNR,
-          { width: width <= 1000 ? width * 0.9 : width * 0.3 },
+          { width: WIDTH <= 1000 ? WIDTH * 0.9 : WIDTH * 0.3 },
         ]}
       ></PlaceholderMedia>
     </Placeholder>

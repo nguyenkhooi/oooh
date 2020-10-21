@@ -12,20 +12,20 @@ export default function S_Carou(props: CarouselProps<{}>) {
   const { data, itemRender, onSnapToItem } = props;
   const [index, setIndex] = React.useState(0);
 
-  const { width, height } = useDimension("window");
+  const { WIDTH, HEIGHT } = useDimension("window");
 
   const [_dim, setDim] = React.useState({
-    sliderWidth: width,
-    width: Math.round(width * 0.9),
-    height: Math.round(Math.round(width * 0.9) * 0.4),
-    translateValue: Math.round((width * 0.3) / 4),
+    sliderWidth: WIDTH,
+    width: Math.round(WIDTH * 0.9),
+    height: Math.round(Math.round(WIDTH * 0.9) * 0.4),
+    translateValue: Math.round((WIDTH * 0.3) / 4),
   });
 
   React.useEffect(
     function dynamicSize() {
-      const SLIDER_WIDTH = width;
+      const SLIDER_WIDTH = WIDTH;
       const ITEM_WIDTH =
-        width <= 1000
+        WIDTH <= 1000
           ? Math.round(SLIDER_WIDTH * 0.5)
           : Math.round(SLIDER_WIDTH * 0.3);
       const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 2);
@@ -37,7 +37,7 @@ export default function S_Carou(props: CarouselProps<{}>) {
         translateValue: TRANSLATE_VALUE,
       });
     },
-    [width, height]
+    [WIDTH, HEIGHT]
   );
   function _renderItem({ item }) {
     return (

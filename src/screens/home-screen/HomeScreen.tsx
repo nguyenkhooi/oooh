@@ -14,11 +14,11 @@ export default withTheme((props: IPSCR) => {
   } = props;
   const scrollRef = React.useRef<ScrollView>(null);
   // const [C, dark] = useTheme();
-  const { height } = useDimension("window");
+  const { HEIGHT } = useDimension("window");
 
   let sectionsPos: number[] = [];
   function scrollToIndex(n: number) {
-    scrollRef.current?.scrollTo({ x: 0, y: height * n, animated: true });
+    scrollRef.current?.scrollTo({ x: 0, y: HEIGHT * n, animated: true });
     //* deprecated due to inconsistent sectionsPos[] change due to dimensions' change
     // if (sectionsPos.length > n) {
     //   const targeted_y = sectionsPos
@@ -91,14 +91,14 @@ const $_Intro = (props: d$_Intro) => {
     scrollToWork,
     scrollToExp,
   } = props;
-  const { height } = useDimension("window");
+  const { HEIGHT, s } = useDimension("window");
   const [_color, setColor] = React.useState(C.text);
   return (
     <Animatable.View
       animation="fadeInUp"
       delay={1000}
       style={{
-        height: height,
+        height: HEIGHT,
         justifyContent: "center",
         paddingHorizontal: spacing(6),
         // paddingTop: spacing(7, "v"),

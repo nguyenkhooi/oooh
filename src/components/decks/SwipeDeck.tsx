@@ -53,7 +53,7 @@ export function SwipeDeck(props: dCOMPSwipeDeck) {
   } = props;
   const [_currentIndex, setCurrentIndex] = React.useState(0);
   const [_data, setData] = React.useState(data);
-  const { width, height } = useDimension();
+  const { WIDTH, HEIGHT } = useDimension();
 
   const _containerStyle: ViewStyle = {
     ...containerStyle,
@@ -65,10 +65,10 @@ export function SwipeDeck(props: dCOMPSwipeDeck) {
     ...cardStyle,
     left: !!containerStyle?.width
       ? Number(containerStyle.width) / 2 - Number(cardStyle?.width) / 2
-      : width / 2 - Number(cardStyle?.width) / 2,
+      : WIDTH / 2 - Number(cardStyle?.width) / 2,
     top: !!containerStyle?.height
       ? Number(containerStyle.height) / 2 - Number(cardStyle?.height) / 2
-      : height / 2 - Number(cardStyle.height) / 2,
+      : HEIGHT / 2 - Number(cardStyle.height) / 2,
   };
 
   const _swipeDistance = Number(_containerStyle.width) / 2;
@@ -132,7 +132,7 @@ export function SwipeDeck(props: dCOMPSwipeDeck) {
           case true:
             setCurrentIndex(_currentIndex + 1);
             return Animated.spring(_position, {
-              toValue: { x: width + 100, y: gestureState.dy },
+              toValue: { x: WIDTH + 100, y: gestureState.dy },
               useNativeDriver: true,
             }).start(() => {
               /** Post swipe right */
@@ -143,7 +143,7 @@ export function SwipeDeck(props: dCOMPSwipeDeck) {
           case false:
             setCurrentIndex(_currentIndex + 1);
             return Animated.spring(_position, {
-              toValue: { x: -width - 100, y: gestureState.dy },
+              toValue: { x: -WIDTH - 100, y: gestureState.dy },
               useNativeDriver: true,
             }).start(() => {
               /** Post swipe left */

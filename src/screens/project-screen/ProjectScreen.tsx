@@ -28,10 +28,10 @@ function ProjectScreen(props) {
     theme: { C },
     route,
   } = props;
-  const { width, height } = useDimension();
+  const { WIDTH } = useDimension();
 
   // const imageWidth: number = height * 0.4 - 20;
-  const imageWidth: number = width < 1000 ? width * 0.8 : width * 0.3;
+  const imageWidth: number = WIDTH < 1000 ? WIDTH * 0.8 : WIDTH * 0.3;
   const [screenShown, showScreen] = useState(false);
   const [isHorizontal, setIsHorizontal] = useState(false);
 
@@ -157,7 +157,7 @@ function ProjectScreen(props) {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           removeClippedSubviews={true}
-          columns={width < 1000 ? 1 : 2}
+          columns={WIDTH < 1000 ? 1 : 2}
           evenColumnStyle={SS(C).evenColumnStyle}
           oddColumnStyle={
             isHorizontal
@@ -188,7 +188,7 @@ export default withTheme(ProjectScreen);
 const $_RingadingDeck = (props) => {
   const { visible } = props;
   const { data } = useSheets(0, "Ringading_Exp");
-  const { width } = useDimension();
+  const { WIDTH: width } = useDimension();
   React.useEffect(
     function fetchData() {
       setDeckData(data);
