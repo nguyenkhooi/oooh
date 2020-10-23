@@ -1,4 +1,4 @@
-import { sstyled, Txt, TouchableWeb } from "components";
+import { sstyled, Toasty, TouchableWeb, Txt } from "components";
 import { withTheme } from "engines";
 import * as React from "react";
 import { ScrollView, View } from "react-native";
@@ -118,7 +118,23 @@ const $_Intro = (props: d$_Intro) => {
             style={{ width: 200, height: 200, borderRadius: 200 }}
           ></Image>
         )} */}
-        <Txt.H6 onPress={() => setTheme(dark ? "themeLight" : "themeDark")}>
+        <Txt.H6
+          // onPress={() => setTheme(dark ? "themeLight" : "themeDark")}
+          onPress={() => {
+            const __toast = Toasty.show("Loading...", {
+              type: "loading",
+            });
+            setTimeout(() => {
+              !!__toast &&
+                Toasty.update(__toast, "Done!", {
+                  type: "success",
+                  //icon: Toasty.icon().success,
+                });
+            }, 1000);
+
+            // Toasty.show("Hey", { type: "success" });
+          }}
+        >
           Hi, I'm Khoi 👋
         </Txt.H6>
         <Txt.P1 style={{ color: _color }} adjustsFontSizeToFit={true}>

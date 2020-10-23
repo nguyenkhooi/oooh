@@ -1,6 +1,7 @@
 import * as eva from "@eva-design/eva";
 import { NavigationContainerRef } from "@react-navigation/native";
 import { ApplicationProvider } from "@ui-kitten/components";
+import { Toasty } from "components";
 import { ThemeProvider } from "engines";
 import * as React from "react";
 import {
@@ -33,6 +34,7 @@ function App() {
           initialState={initialNavigationState}
           onStateChange={onNavigationStateChange}
         />
+        <Toasty ref={(ref) => Toasty.setRef(ref)} />
       </ApplicationProvider>
     </ThemeProvider>
   );
