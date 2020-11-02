@@ -1,26 +1,33 @@
-import React, { useRef, useEffect, useState } from "react";
-import { View, StyleSheet, Animated, Text, TouchableWithoutFeedback } from "react-native";
-
-const Toast = ({
-  id,
-  onClose,
-  icon,
-  type = "normal",
-  message,
-  duration = 3000,
-  style,
-  textStyle,
-  successIcon,
-  dangerIcon,
-  warningIcon,
-  successColor,
-  dangerColor,
-  warningColor,
-  placement,
-  onPress
-}) => {
-  const containerRef = useRef(null);
+import React, { useEffect, useRef, useState } from "react";
+import { ActivityIndicator, Animated, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+export function Toast(props) {
+  const {
+    id,
+    onClose,
+    icon,
+    type = "normal",
+    message,
+    duration = 3000,
+    style,
+    textStyle,
+    successIcon,
+    dangerIcon,
+    warningIcon,
+    loadingIcon = /*#__PURE__*/React.createElement(ActivityIndicator, {
+      size: "small",
+      color: "white"
+    }),
+    successColor,
+    dangerColor,
+    warningColor,
+    placement,
+    onPress
+  } = props;
+  const refCtnr = useRef(null);
   const [animation] = useState(new Animated.Value(0));
+
+  let _icon;
+
   useEffect(() => {
     Animated.timing(animation, {
       toValue: 1,
@@ -30,7 +37,7 @@ const Toast = ({
     let closeTimeout = null;
 
     if (duration !== 0 && typeof duration === "number") {
-      closeTimeout = setTimeout(() => {
+      closeTimeout = global.setTimeout(() => {
         Animated.timing(animation, {
           toValue: 0,
           useNativeDriver: true,
@@ -40,7 +47,7 @@ const Toast = ({
     }
 
     return () => {
-      closeTimeout && clearTimeout(closeTimeout);
+      closeTimeout && global.clearTimeout(closeTimeout);
     };
   }, []);
 
@@ -48,32 +55,28 @@ const Toast = ({
     switch (type) {
       case "success":
         {
-          if (successIcon) {
-            icon = successIcon;
-          }
-
+          !!successIcon && (_icon = successIcon);
           break;
         }
 
       case "danger":
         {
-          if (dangerIcon) {
-            icon = dangerIcon;
-          }
-
+          !!dangerIcon && (_icon = dangerIcon);
           break;
         }
 
       case "warning":
         {
-          if (warningIcon) {
-            icon = warningIcon;
-          }
-
+          !!warningIcon && (_icon = warningIcon);
           break;
         }
+
+      case "loading":
+        {
+          !!loadingIcon && (_icon = loadingIcon);
+        }
     }
-  }
+  } else _icon = icon;
 
   const animationStyle = {
     opacity: animation,
@@ -98,24 +101,26 @@ const Toast = ({
 
     case "warning":
       backgroundColor = warningColor || "#ffbb33";
+
+    default:
+      backgroundColor = "#333";
   }
 
   const renderToast = () => /*#__PURE__*/React.createElement(Animated.View, {
-    ref: containerRef,
+    ref: refCtnr,
     style: [styles.container, animationStyle, {
       backgroundColor
     }, style]
-  }, icon ? /*#__PURE__*/React.createElement(View, {
+  }, _icon ? /*#__PURE__*/React.createElement(View, {
     style: styles.iconContainer
-  }, icon) : null, /*#__PURE__*/React.isValidElement(message) ? message : /*#__PURE__*/React.createElement(Text, {
+  }, _icon) : null, /*#__PURE__*/React.isValidElement(message) ? message : /*#__PURE__*/React.createElement(Text, {
     style: [styles.message, textStyle]
   }, message));
 
   return onPress ? /*#__PURE__*/React.createElement(TouchableWithoutFeedback, {
     onPress: () => onPress(id)
   }, renderToast()) : renderToast();
-};
-
+}
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 12,
@@ -132,6 +137,5 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginRight: 5
   }
-});
-export default Toast;
+}); // export default Toast;
 //# sourceMappingURL=toast.js.map

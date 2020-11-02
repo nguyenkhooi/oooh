@@ -1,18 +1,19 @@
-import React, { FC, useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  View,
-  StyleSheet,
+  ActivityIndicator,
   Animated,
   StyleProp,
-  ViewStyle,
-  TextStyle,
+  StyleSheet,
   Text,
+  TextStyle,
   TouchableWithoutFeedback,
+  View,
+  ViewStyle
 } from "react-native";
 
 export interface ToastOptions {
   icon?: JSX.Element;
-  type?: "normal" | "success" | "danger" | "warning";
+  type?: "normal" | "success" | "danger" | "warning" | "loading";
   duration?: number;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
@@ -20,6 +21,7 @@ export interface ToastOptions {
   successIcon?: JSX.Element;
   dangerIcon?: JSX.Element;
   warningIcon?: JSX.Element;
+  loadingIcon?: JSX.Element;
 
   successColor?: string;
   dangerColor?: string;
@@ -35,30 +37,34 @@ export interface ToastProps extends ToastOptions {
   placement?: "top" | "bottom";
 }
 
-const Toast: FC<ToastProps> = ({
-  id,
-  onClose,
-  icon,
-  type = "normal",
-  message,
-  duration = 3000,
-  style,
-  textStyle,
+export function Toast(props: ToastProps) {
+  const {
+    id,
+    onClose,
+    icon,
+    type = "normal",
+    message,
+    duration = 3000,
+    style,
+    textStyle,
 
-  successIcon,
-  dangerIcon,
-  warningIcon,
+    successIcon,
+    dangerIcon,
+    warningIcon,
+    loadingIcon = <ActivityIndicator size="small" color="white" />,
 
-  successColor,
-  dangerColor,
-  warningColor,
+    successColor,
+    dangerColor,
+    warningColor,
 
-  placement,
+    placement,
 
-  onPress,
-}) => {
-  const containerRef = useRef<View>(null);
+    onPress,
+  } = props;
+  const refCtnr = useRef<View>(null);
   const [animation] = useState(new Animated.Value(0));
+
+  let _icon: JSX.Element;
 
   useEffect(() => {
     Animated.timing(animation, {
@@ -70,7 +76,7 @@ const Toast: FC<ToastProps> = ({
     let closeTimeout: NodeJS.Timeout | null = null;
 
     if (duration !== 0 && typeof duration === "number") {
-      closeTimeout = setTimeout(() => {
+      closeTimeout = global.setTimeout(() => {
         Animated.timing(animation, {
           toValue: 0,
           useNativeDriver: true,
@@ -80,33 +86,30 @@ const Toast: FC<ToastProps> = ({
     }
 
     return () => {
-      closeTimeout && clearTimeout(closeTimeout);
+      closeTimeout && global.clearTimeout(closeTimeout);
     };
   }, []);
 
   if (icon === undefined) {
     switch (type) {
       case "success": {
-        if (successIcon) {
-          icon = successIcon;
-        }
+        !!successIcon && (_icon = successIcon);
         break;
       }
 
       case "danger": {
-        if (dangerIcon) {
-          icon = dangerIcon;
-        }
+        !!dangerIcon && (_icon = dangerIcon);
         break;
       }
       case "warning": {
-        if (warningIcon) {
-          icon = warningIcon;
-        }
+        !!warningIcon && (_icon = warningIcon);
         break;
       }
+      case "loading": {
+        !!loadingIcon && (_icon = loadingIcon);
+      }
     }
-  }
+  } else _icon = icon;
 
   const animationStyle = {
     opacity: animation,
@@ -130,14 +133,16 @@ const Toast: FC<ToastProps> = ({
       break;
     case "warning":
       backgroundColor = warningColor || "#ffbb33";
+    default:
+      backgroundColor = "#333";
   }
 
   const renderToast = () => (
     <Animated.View
-      ref={containerRef}
+      ref={refCtnr}
       style={[styles.container, animationStyle, { backgroundColor }, style]}
     >
-      {icon ? <View style={styles.iconContainer}>{icon}</View> : null}
+      {_icon ? <View style={styles.iconContainer}>{_icon}</View> : null}
       {React.isValidElement(message) ? (
         message
       ) : (
@@ -153,7 +158,7 @@ const Toast: FC<ToastProps> = ({
   ) : (
     renderToast()
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -173,4 +178,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Toast;
+// export default Toast;

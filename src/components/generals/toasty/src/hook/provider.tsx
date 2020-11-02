@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import { Props, Toasty } from "../Toasty";
+import Toasty, { Props } from "../Toasty";
 import { ToastyContext } from "./context";
 
 export const ToastyProvider: FC<Props> = ({ children, ...props }) => {

@@ -124,7 +124,7 @@ const $_Intro = (props: d$_Intro) => {
             const __toast = Toasty.show("Loading...", {
               type: "loading",
             });
-            setTimeout(() => {
+            global.setTimeout(() => {
               !!__toast &&
                 Toasty.update(__toast, "Done!", {
                   type: "success",

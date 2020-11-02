@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import ToastContext from "./context";
-import Toast, { Props } from "../toast-container";
+import Toasty, { Props } from "../Toasty";
+import { ToastyContext } from "./context";
 
-const ToastProvider: FC<Props> = ({ children, ...props }) => {
+export const ToastyProvider: FC<Props> = ({ children, ...props }) => {
   const toastRef = useRef(null);
   const [refState, setRefState] = useState(null);
 
@@ -11,11 +11,11 @@ const ToastProvider: FC<Props> = ({ children, ...props }) => {
   }, []);
 
   return (
-    <ToastContext.Provider value={refState}>
+    <ToastyContext.Provider value={refState}>
       {children}
-      <Toast ref={toastRef} {...props} />
-    </ToastContext.Provider>
+      <Toasty ref={toastRef} {...props} />
+    </ToastyContext.Provider>
   );
 };
 
-export default ToastProvider;
+// export default ToastyProvider;

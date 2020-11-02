@@ -38,7 +38,7 @@ interface State {
  * @author nguyenkhooi
  * @see https://github.com/arnnis/react-native-fast-toast
  */
-export class Toasty extends Component<Props, State> {
+export default class Toasty extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -108,7 +108,10 @@ export class Toasty extends Component<Props, State> {
     this._ref?._hide(id);
   }
 
-  _show = (message: string | JSX.Element, toastOptions?: ToastOptions) => {
+  private _show = (
+    message: string | JSX.Element,
+    toastOptions?: ToastOptions
+  ) => {
     let id = Math.random().toString();
     const onClose = () => this._hide(id);
 
@@ -130,7 +133,7 @@ export class Toasty extends Component<Props, State> {
     return id;
   };
 
-  _update = (
+  private _update = (
     id: string,
     message: string | JSX.Element,
     toastOptions?: ToastOptions
@@ -142,7 +145,7 @@ export class Toasty extends Component<Props, State> {
     });
   };
 
-  _hide = (id: string) => {
+  private _hide = (id: string) => {
     this.setState({ toasts: this.state.toasts.filter((t) => t.id !== id) });
   };
 

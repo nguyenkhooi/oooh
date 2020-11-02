@@ -1,4 +1,5 @@
-export { default } from "./toast-container";
-export { default as ToastProvider } from "./hook/provider";
-export { default as useToast } from "./hook/useToast";
+//@ts-check
+export { ToastyProvider } from "./hook/provider";
+export { useToasty } from "./hook/useToasty";
+export { default as Toasty } from "./Toasty";
 //# sourceMappingURL=index.js.map

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.Toast = Toast;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -13,26 +13,34 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-const Toast = ({
-  id,
-  onClose,
-  icon,
-  type = "normal",
-  message,
-  duration = 3000,
-  style,
-  textStyle,
-  successIcon,
-  dangerIcon,
-  warningIcon,
-  successColor,
-  dangerColor,
-  warningColor,
-  placement,
-  onPress
-}) => {
-  const containerRef = (0, _react.useRef)(null);
+function Toast(props) {
+  const {
+    id,
+    onClose,
+    icon,
+    type = "normal",
+    message,
+    duration = 3000,
+    style,
+    textStyle,
+    successIcon,
+    dangerIcon,
+    warningIcon,
+    loadingIcon = /*#__PURE__*/_react.default.createElement(_reactNative.ActivityIndicator, {
+      size: "small",
+      color: "white"
+    }),
+    successColor,
+    dangerColor,
+    warningColor,
+    placement,
+    onPress
+  } = props;
+  const refCtnr = (0, _react.useRef)(null);
   const [animation] = (0, _react.useState)(new _reactNative.Animated.Value(0));
+
+  let _icon;
+
   (0, _react.useEffect)(() => {
     _reactNative.Animated.timing(animation, {
       toValue: 1,
@@ -43,7 +51,7 @@ const Toast = ({
     let closeTimeout = null;
 
     if (duration !== 0 && typeof duration === "number") {
-      closeTimeout = setTimeout(() => {
+      closeTimeout = global.setTimeout(() => {
         _reactNative.Animated.timing(animation, {
           toValue: 0,
           useNativeDriver: true,
@@ -53,7 +61,7 @@ const Toast = ({
     }
 
     return () => {
-      closeTimeout && clearTimeout(closeTimeout);
+      closeTimeout && global.clearTimeout(closeTimeout);
     };
   }, []);
 
@@ -61,32 +69,28 @@ const Toast = ({
     switch (type) {
       case "success":
         {
-          if (successIcon) {
-            icon = successIcon;
-          }
-
+          !!successIcon && (_icon = successIcon);
           break;
         }
 
       case "danger":
         {
-          if (dangerIcon) {
-            icon = dangerIcon;
-          }
-
+          !!dangerIcon && (_icon = dangerIcon);
           break;
         }
 
       case "warning":
         {
-          if (warningIcon) {
-            icon = warningIcon;
-          }
-
+          !!warningIcon && (_icon = warningIcon);
           break;
         }
+
+      case "loading":
+        {
+          !!loadingIcon && (_icon = loadingIcon);
+        }
     }
-  }
+  } else _icon = icon;
 
   const animationStyle = {
     opacity: animation,
@@ -111,23 +115,26 @@ const Toast = ({
 
     case "warning":
       backgroundColor = warningColor || "#ffbb33";
+
+    default:
+      backgroundColor = "#333";
   }
 
   const renderToast = () => /*#__PURE__*/_react.default.createElement(_reactNative.Animated.View, {
-    ref: containerRef,
+    ref: refCtnr,
     style: [styles.container, animationStyle, {
       backgroundColor
     }, style]
-  }, icon ? /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+  }, _icon ? /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: styles.iconContainer
-  }, icon) : null, /*#__PURE__*/_react.default.isValidElement(message) ? message : /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+  }, _icon) : null, /*#__PURE__*/_react.default.isValidElement(message) ? message : /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
     style: [styles.message, textStyle]
   }, message));
 
   return onPress ? /*#__PURE__*/_react.default.createElement(_reactNative.TouchableWithoutFeedback, {
     onPress: () => onPress(id)
   }, renderToast()) : renderToast();
-};
+}
 
 const styles = _reactNative.StyleSheet.create({
   container: {
@@ -145,8 +152,5 @@ const styles = _reactNative.StyleSheet.create({
   iconContainer: {
     marginRight: 5
   }
-});
-
-var _default = Toast;
-exports.default = _default;
+}); // export default Toast;
 //# sourceMappingURL=toast.js.map

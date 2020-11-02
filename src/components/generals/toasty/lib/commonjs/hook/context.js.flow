@@ -1,7 +1,8 @@
 import React from "react";
+import Toasty from "../Toasty";
 
-type Toast = React.RefObject<import("../toast-container").default>["current"];
+type Toast = React.RefObject<Toasty>["current"];
 
-const ToastContext = React.createContext(null as Toast);
+export const ToastyContext = React.createContext(null as Toast);
 
-export default ToastContext;
+// export default ToastyContext;

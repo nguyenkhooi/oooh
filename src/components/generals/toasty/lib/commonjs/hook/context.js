@@ -3,14 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.ToastyContext = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const ToastContext = /*#__PURE__*/_react.default.createContext(null);
+const ToastyContext = /*#__PURE__*/_react.default.createContext(null); // export default ToastyContext;
 
-var _default = ToastContext;
-exports.default = _default;
+
+exports.ToastyContext = ToastyContext;
 //# sourceMappingURL=context.js.map

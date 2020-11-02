@@ -1,5 +1,5 @@
 {
-  "main": "index.js",
+  "main": "src/components/index.js",
   "homepage": "http://nguyenkhooi.github.io/oooh",
   "scripts": {
     "android": "react-native run-android",
@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "deploy": "gh-pages -d web-build",
-    "predeploy": "expo build:web"
+    "predeploy": "expo build:web",
+    "prepare": "bob build"
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
@@ -49,6 +50,7 @@
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "@expo/webpack-config": "^0.12.30",
+    "@react-native-community/bob": "^0.16.2",
     "@types/color": "^3.0.1",
     "@types/dotenv": "^8.2.0",
     "@types/faker": "^5.1.0",
@@ -67,7 +69,34 @@
     "typescript": "~3.9.5"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ]
   },
-  "private": true
+  "private": true,
+  "react-native": "src/components/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/components/index.d.ts",
+  "files": [
+    "src/components",
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "@react-native-community/bob": {
+    "source": "src/components",
+    "output": "lib",
+    "targets": [
+      "aar",
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ]
 }

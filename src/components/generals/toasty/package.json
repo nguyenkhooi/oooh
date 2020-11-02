@@ -1,5 +1,5 @@
 {
-  "name": "@oooh/toasty",
+  "name": "@nguyenkhooi/toasty",
   "version": "1.0.0",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -14,7 +14,15 @@
     "name": "Khoi Tran",
     "email": "drkhoi16@gmail.com"
   },
-  "homepage": "https://github.com/arnnis/react-native-fast-toast#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nguyenkhooi/oooh.git",
+    "directory": "src/components/generals/toasty"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/nguyenkhooi/oooh/tree/master/src/components/generals/toasty",
   "devDependencies": {
     "@react-native-community/bob": "^0.16.2",
     "@types/react": "^16.9.49",

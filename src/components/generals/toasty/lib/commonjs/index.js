@@ -3,30 +3,30 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "default", {
+Object.defineProperty(exports, "ToastyProvider", {
   enumerable: true,
   get: function () {
-    return _toastContainer.default;
+    return _provider.ToastyProvider;
   }
 });
-Object.defineProperty(exports, "ToastProvider", {
+Object.defineProperty(exports, "useToasty", {
   enumerable: true,
   get: function () {
-    return _provider.default;
+    return _useToasty.useToasty;
   }
 });
-Object.defineProperty(exports, "useToast", {
+Object.defineProperty(exports, "Toasty", {
   enumerable: true,
   get: function () {
-    return _useToast.default;
+    return _Toasty.default;
   }
 });
 
-var _toastContainer = _interopRequireDefault(require("./toast-container"));
+var _provider = require("./hook/provider");
 
-var _provider = _interopRequireDefault(require("./hook/provider"));
+var _useToasty = require("./hook/useToasty");
 
-var _useToast = _interopRequireDefault(require("./hook/useToast"));
+var _Toasty = _interopRequireDefault(require("./Toasty"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map

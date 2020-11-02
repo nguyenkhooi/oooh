@@ -1,4 +1,3 @@
 import React from "react";
-const ToastContext = /*#__PURE__*/React.createContext(null);
-export default ToastContext;
+export const ToastyContext = /*#__PURE__*/React.createContext(null); // export default ToastyContext;
 //# sourceMappingURL=context.js.map

@@ -76,7 +76,7 @@ export function Toast(props: ToastProps) {
     let closeTimeout: NodeJS.Timeout | null = null;
 
     if (duration !== 0 && typeof duration === "number") {
-      closeTimeout = setTimeout(() => {
+      closeTimeout = global.setTimeout(() => {
         Animated.timing(animation, {
           toValue: 0,
           useNativeDriver: true,
@@ -86,7 +86,7 @@ export function Toast(props: ToastProps) {
     }
 
     return () => {
-      closeTimeout && clearTimeout(closeTimeout);
+      closeTimeout && global.clearTimeout(closeTimeout);
     };
   }, []);
 

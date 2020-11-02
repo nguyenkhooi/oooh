@@ -10,7 +10,7 @@ import {
   ScrollView,
   TextStyle,
   View,
-  ViewStyle,
+  ViewStyle
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 // import { ScrollView } from "react-native-gesture-handler";
@@ -74,7 +74,7 @@ function ProjectScreen(props) {
       dbContents
     );
     setContents(newContents);
-    setTimeout(() => {
+    global.setTimeout(() => {
       showScreen(true);
     }, 1000);
   }, []);
