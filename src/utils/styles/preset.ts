@@ -1,6 +1,5 @@
 import * as R from "ramda";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { CalendarTheme } from "react-native-calendars";
 import { dColors } from "utils/typings";
 // import { typoCarp } from "./index";
 import { getBottomSpace, scale } from "../helpers";
@@ -65,21 +64,6 @@ export const PRE = (C?: dColors) => {
         backgroundColor: _C.transparent,
       } as ViewStyle,
     },
-    CALENDAR: {
-      backgroundColor: _C.pitchWhite,
-      calendarBackground: _C.pitchWhite,
-      textSectionTitleColor: _C.grey900,
-      selectedDayBackgroundColor: _C.primary,
-      selectedDayTextColor: _C.text01,
-      todayTextColor: _C.awakenVolt,
-      dayTextColor: _C.text,
-      textDisabledColor: _C.grey500,
-      dotColor: "#00adf5",
-      selectedDotColor: "#ffffff",
-      arrowColor: _C.primaryDarker,
-      monthTextColor: _C.primaryDarker,
-      textMonthFontFamily: "Montserrat-Bold",
-    } as CalendarTheme,
     CARD: {
       ACCORDION: {
         OVERVIEW_CTNR_00: {

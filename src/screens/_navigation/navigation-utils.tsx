@@ -9,11 +9,10 @@ import { StackNavigationOptions } from "@react-navigation/stack";
 import React, { useEffect, useRef, useState } from "react";
 import { BackHandler } from "react-native";
 // import { enum_HomeStack } from "./home-navigator";
-import { enum_PrimaryStack } from "./primary.navigator";
 import { enum_RootStack } from "./root.navigator";
 import { enum_WelcomeStack } from "./welcome.navigator";
 
-type navigationRoute = enum_PrimaryStack | enum_RootStack | enum_WelcomeStack;
+type navigationRoute = enum_RootStack | enum_WelcomeStack;
 
 /**
  * Type of stacked screen collection (=C0)

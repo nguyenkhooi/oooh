@@ -1,6 +1,5 @@
 import React from "react";
 //@ts-check
-import { Dimensions, Platform, StatusBar } from "react-native";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
 // export * from "react-native-size-matters"

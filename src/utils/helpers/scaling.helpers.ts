@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, ScaledSize } from "react-native";
 
 /**
  * A hook that gets dynamic dimensions,
@@ -15,7 +15,13 @@ import { Dimensions } from "react-native";
  * @author nguyenkhooi
  */
 export function useDimension(type: "screen" | "window" = "window"): dDimension {
-  const [dimensions, setDimensions] = React.useState({ window, screen });
+  const [dimensions, setDimensions] = React.useState<{
+    window: ScaledSize;
+    screen: ScaledSize;
+  }>({
+    window: null,
+    screen: null,
+  });
 
   const onChange = ({ window, screen }) => {
     setDimensions({ window, screen });

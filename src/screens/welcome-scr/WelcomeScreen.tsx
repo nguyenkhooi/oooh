@@ -2,17 +2,16 @@ import { Buttoon, Ni, Toasty, sstyled, Txt } from "components";
 import { useAppContext } from "engines";
 import React from "react";
 import { View } from "react-native";
-import { Navigation } from "screens/_navigation";
-import { spacing, THEME, tr } from "utils";
+import { spacing, THEME } from "utils";
 
 export function WelcomeScreen() {
-  const { C, dark, setTheme } = useAppContext();
+  const { dark, setTheme } = useAppContext();
 
   return (
     <Ctnr>
       <CtnrWelcome animation="fadeInUp" delay={500}>
-        <TxtTitle>{tr("Welcome to")}</TxtTitle>
-        <TxtTitle>{tr("Oooh Playbook")}</TxtTitle>
+        <TxtTitle>{"Welcome to"}</TxtTitle>
+        <TxtTitle>{"Oooh Playbook"}</TxtTitle>
       </CtnrWelcome>
       <CtnrWelcome animation="fadeInUp" delay={1000}>
         <Buttoon
@@ -30,7 +29,7 @@ export function WelcomeScreen() {
             }, 1000);
           }}
         >
-          {tr("Hi I'm Toasty!")}
+          {"Hi I'm Toasty!"}
         </Buttoon>
       </CtnrWelcome>
     </Ctnr>

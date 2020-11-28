@@ -1,6 +1,6 @@
 // import { IPcolors, IPpalette } from "./utils-typings";
 import { ViewStyle } from "react-native";
-import { KeyOf } from "utilities/";
+import { KeyOf } from "utils";
 import { iconOptions } from "./oooh-icon";
 
 /**
@@ -31,4 +31,9 @@ export type enum_IconPkg =
   | "simple-line-icon"
   | "antdesign";
 
-export type dIconOptions = { type: enum_IconPkg; icon: string; scale?: number };
+export type dIconOptions = {
+  type: enum_IconPkg;
+  icon: string;
+  scale?: number;
+  solid?: boolean;
+};

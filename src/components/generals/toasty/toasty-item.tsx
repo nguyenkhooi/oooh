@@ -42,7 +42,7 @@ export function ToastyItem(props: dToasty) {
       duration: 250,
     }).start();
 
-    let closeTimeout: NodeJS.Timeout | null = null;
+    let closeTimeout: number | null = null;
 
     if (duration !== 0 && typeof duration === "number") {
       closeTimeout = setTimeout(() => {

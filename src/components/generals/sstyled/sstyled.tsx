@@ -43,7 +43,8 @@ export function sstyled<Component extends React.ElementType>(
         ...dim,
         style: {
           ...(typeof style === "function"
-            ? style({ ...props, ...dim, C })
+            ? //@ts-ignore
+              style({ ...props, ...dim, C })
             : style),
           ...props.style,
         },
@@ -57,11 +58,14 @@ interface Props extends dDimension {
   C: dColors;
 }
 
+//@ts-ignore
 type dTargetedComp<C, P> = React.ComponentProps<C> & P;
-
 type dTargetedCompStyle<C, P> =
+  //@ts-ignore
   | (React.ComponentProps<C> & P)
+  //@ts-ignore
   | React.ComponentProps<C>["style"]
+  //@ts-ignore
   | ((props: dTargetedComp<C, P>) => React.ComponentProps<C>["style"]);
 
 /**

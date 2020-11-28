@@ -22,9 +22,10 @@ export function useSheets(
       /** set `wanted` with specific `sheetName` to get data only from that sheet */
       wanted: [sheetName],
       simpleSheet: true,
-    }).then(async (googleData: null | rSheets[]) => {
+    }).then(async (googleData) => {
       try {
-        !!googleData && setData(googleData) && setFields(R.keys(googleData[0]));
+        setData(googleData);
+        setFields(R.keys(googleData[0]));
       } catch (error) {
         console.warn("err useSheets: ", error);
       }
