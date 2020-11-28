@@ -2,16 +2,12 @@ import { IconOooh } from "assets";
 import React, { useEffect, useRef, useState } from "react";
 import {
   Animated,
-  StyleProp,
   StyleSheet,
   Text,
-  TextStyle,
   View,
-  ViewStyle,
   TouchableOpacity,
 } from "react-native";
-
-
+import { dToasty } from "./toasty.props";
 
 export function ToastyItem(props: dToasty) {
   const {
@@ -133,13 +129,19 @@ export function ToastyItem(props: dToasty) {
     >
       <TouchableOpacity
         activeOpacity={0.9}
-        style={{ flex: 5, paddingVertical: 5, paddingHorizontal: 11 }}
+        style={{ paddingVertical: 5, paddingHorizontal: 11 }}
         onPress={!!onPress ? () => onPress(id) : null}
       >
         <Animated.View
           ref={containerRef}
           // style={[styles.container, animationStyle, { backgroundColor }, style]}
-          style={{ ...animationStyle, flexDirection: "row" }}
+          style={{
+            ...animationStyle,
+            flexDirection: "row",
+            alignItems: "center",
+            flex: 1,
+            justifyContent: "space-between",
+          }}
         >
           {_icon ? <View style={styles.iconContainer}>{_icon}</View> : null}
           {React.isValidElement(message) ? (
@@ -182,6 +184,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   iconContainer: {
-    marginRight: 5,
+    marginRight: 10,
   },
 });

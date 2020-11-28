@@ -7,6 +7,7 @@ import { spacing, THEME, tr } from "utils";
 
 export function WelcomeScreen() {
   const { C, dark, setTheme } = useAppContext();
+
   return (
     <Ctnr>
       <CtnrWelcome animation="fadeInUp" delay={500}>
@@ -17,7 +18,17 @@ export function WelcomeScreen() {
         <Buttoon
           size="small"
           onLongPress={() => setTheme(dark ? THEME.LIGHT : THEME.DARK)}
-          onPress={() => Toasty.show("Hey", { type: "loading" })}
+          onPress={() => {
+            const __toasty = Toasty.show("On the way...", { type: "loading" });
+
+            setTimeout(() => {
+              !!__toasty &&
+                Toasty.update(__toasty, "Done!", {
+                  type: "success",
+                  icon: Toasty.icon.success,
+                });
+            }, 1000);
+          }}
         >
           {tr("Hi I'm Toasty!")}
         </Buttoon>

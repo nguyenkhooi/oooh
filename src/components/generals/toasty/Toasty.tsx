@@ -14,20 +14,20 @@ import { dToastyOptions, Props, State } from "./toasty.props";
 const dims = Dimensions.get("window");
 
 /**
- * A Toast component for react-native, 
+ * A Toast component for react-native,
  * supports Android, IOS, Web, Windows
  *
  * ---
  * @example
- * 
- * <Text onPress={()=> 
- *  Toasty.show("Hello mf", 
+ *
+ * <Text onPress={()=>
+ *  Toasty.show("Hello mf",
  *  { type: "success" })
  * }>
  *  Toast!
  * </Text>
- * 
- * - In `App.tsx`, add: 
+ *
+ * - In `App.tsx`, add:
  * <Toasty ref={(ref) => Toasty.setRef(ref)} />
  * ---
  * @version 0.11.28
@@ -76,19 +76,21 @@ export class Toasty extends Component<Props, State> {
 
   static icon = {
     success: (
-      <IconOooh preset={"safe"} name={"check"} size={12} color={"white"} />
+      <IconOooh preset={"default"} name={"check"} size={14} color={"white"} />
     ),
-    danger: <IconOooh preset={"safe"} name={"x"} size={12} color={"white"} />,
+    danger: (
+      <IconOooh preset={"default"} name={"x"} size={14} color={"white"} />
+    ),
     warning: (
       <IconOooh
-        preset={"safe"}
+        preset={"default"}
         name={"exclamation_circle"}
-        size={12}
+        size={14}
         color={"white"}
       />
     ),
     normal: (
-      <IconOooh preset={"safe"} name={"check"} size={12} color={"white"} />
+      <IconOooh preset={"default"} name={"check"} size={14} color={"white"} />
     ),
     loading: <ActivityIndicator size="small" color="white" />,
   };
