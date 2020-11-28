@@ -52,6 +52,7 @@
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "@expo/webpack-config": "^0.12.30",
+    "@react-native-community/bob": "^0.16.2",
     "@storybook/addon-actions": "^5.3",
     "@storybook/addon-knobs": "^5.3",
     "@storybook/addon-links": "^5.3",

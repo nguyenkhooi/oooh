@@ -1,0 +1,29 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "A collection of components curated by @nguyenkhooi to support his work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nguyenkhooi/oooh/tree/master/src/components"
+  },
+  "keywords": [
+    "components",
+    "ui_kitten",
+    "reanimated",
+    "react-native-animatable",
+    "toasty",
+    "poppy",
+    "txt",
+    "buttoon"
+  ],
+  "author": {
+    "email": "drkhoi16@gmail.com",
+    "name": "nguyenkhooi",
+    "url": "https://nguyenkhooi.github.io"
+  },
+  "license": "MIT"
+}
