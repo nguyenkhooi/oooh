@@ -1,54 +1,60 @@
-import { Text } from "@ui-kitten/components";
+import { Text, TextProps } from "@ui-kitten/components";
+import { spacing } from "utils";
 // import { scale } from "utils";
 import { sstyled } from "../sstyled/sstyled";
 
-const H1: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(36),
+const H1 = sstyled(Text)((p) => ({
+  fontSize: 36,
   fontWeight: "800",
 }));
-const H2: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(32),
+const H2 = sstyled(Text)((p) => ({
+  fontSize: 32,
   fontWeight: "800",
 }));
-const H3: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(30),
+const H3 = sstyled(Text)((p) => ({
+  fontSize: 30,
   fontWeight: "800",
 }));
-const H4: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(26),
+const H4 = sstyled(Text)((p) => ({
+  fontSize: 26,
   fontWeight: "800",
 }));
-const H5: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(22),
+const H5 = sstyled(Text)((p) => ({
+  fontSize: 22,
   fontWeight: "800",
 }));
-const H6: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(18),
+const H6 = sstyled(Text)((p) => ({
+  fontSize: 18,
   fontWeight: "800",
 }));
-const S1: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(15),
+const S1 = sstyled(Text)((p) => ({
+  fontSize: 15,
   fontWeight: "600",
 }));
-const S2: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(13),
+const S2 = sstyled(Text)((p) => ({
+  fontSize: 13,
   fontWeight: "600",
 }));
-const P1: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(15),
+const P1 = sstyled(Text)((p) => ({
+  fontSize: 15,
   fontWeight: "400",
 }));
-const P2: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(13),
+const P2 = sstyled(Text)((p) => ({
+  fontSize: 13,
   fontWeight: "400",
 }));
-const C1: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(12),
+const C1 = sstyled(Text)((p) => ({
+  fontSize: 12,
   fontWeight: "400",
 }));
-const C2: typeof Text = sstyled(Text)((p) => ({
-  fontSize: p.ms(12),
+const C2 = sstyled(Text)((p) => ({
+  fontSize: 12,
   fontWeight: "400",
+}));
+
+const $Title = sstyled(H6)((p) => ({
+  paddingLeft: spacing(5),
+  color: p.C.dim,
 }));
 
 /**
@@ -57,26 +63,43 @@ const C2: typeof Text = sstyled(Text)((p) => ({
  * ---
  * @example
  * ```
- * <Txt.P1>👋</Txt.P1>
+ * <Txt>👋</Txt>
  * ```
  * ---
- * @version 0.10.20
- * - *Support dynaDime*
+ * @version 0.11.25
+ * - *No more `ms(size)` to reduce font size*
  */
-export const Txt = {
+export const Txt: dTxtC0 = P1;
+Txt.H1 = H1;
+Txt.H2 = H2;
+Txt.H3 = H3;
+Txt.H4 = H4;
+Txt.H5 = H5;
+Txt.H6 = H6;
+Txt.S1 = S1;
+Txt.S2 = S2;
+Txt.P1 = P1;
+Txt.P2 = P2;
+Txt.C1 = C1;
+Txt.C2 = C2;
+Txt["$Title"] = $Title;
+
+export interface dTxtC0 extends React.FC<TextProps> {
   /** Heading 1 */
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
+  H1?: React.FC<TextProps>;
+  H2?: React.FC<TextProps>;
+  H3?: React.FC<TextProps>;
+  H4?: React.FC<TextProps>;
+  H5?: React.FC<TextProps>;
+  H6?: React.FC<TextProps>;
   /** Subheading 1 */
-  S1,
-  S2,
-  P1,
-  P2,
-  C1,
-  C2,
-};
+  S1?: React.FC<TextProps>;
+  S2?: React.FC<TextProps>;
+  P1?: React.FC<TextProps>;
+  P2?: React.FC<TextProps>;
+  C1?: React.FC<TextProps>;
+  C2?: React.FC<TextProps>;
+  /** Section Title */
+  $Title?: React.FC<TextProps>;
+}
 // export const Txt = Text;

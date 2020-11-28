@@ -1,41 +1,73 @@
 import {
   createStackNavigator,
   StackNavigationOptions,
-  TransitionPresets
+  TransitionPresets,
 } from "@react-navigation/stack";
-import { img } from "assets";
-import { withTheme } from "engines";
+import { IconOooh } from "assets";
+// import { img } from "assets";
+import { useAppContext } from "engines";
 import * as R from "ramda";
 import React from "react";
-import { Image, TextStyle } from "react-native";
-import ProjectScreen from "screens/project-screen/ProjectScreen";
-import { IPSCR, KeyOf, spacing } from "utils";
-import AboutScreen from "../about-screen/AboutScreen";
-import HomeScreen from "../home-screen/HomeScreen";
-import { nConfig } from "./navigation-utils";
+import { TextStyle } from "react-native";
+import { GridBuilderScreen } from "screens/grid-builder-scr";
+import { GridScreen } from "screens/grid-scr/GridScreen";
+import { S_UserCorner } from "screens/home-scr/s-user-corner";
+import { ToastySheet } from "screens/toasty-sh/ToastySheet";
+import { TestScreen } from "screens/test-scr/TestScreen";
+import { KeyOf } from "utils";
+import { HomeScreen } from "../home-scr/HomeScreen";
+import { UserScreen } from "../user-scr/UserScreen";
+import { dStackedScreenC0, presetNavConfig } from "./navigation-utils";
 
-const screenProps = {
-  Home: {
-    component: HomeScreen,
-    options: nConfig.noHeader,
+/**
+ * Screen Collection
+ */
+const SCR_C0: dStackedScreenC0 = {
+  "home-scr": {
+    // component: HomeScreen,
+    component: TestScreen,
+    options: {
+      title: "Kreme Dashboard",
+      headerRight: () => <S_UserCorner />,
+    },
   },
-  About: { component: AboutScreen },
-  Project: {
-    component: ProjectScreen,
-    options: ({ route }) =>
-      nConfig.headerTitle({ route, param: "project", key: "title" }),
+  "builder-scr": {
+    component: GridBuilderScreen,
+    options: {
+      title: "Create a table",
+      ...presetNavConfig.noHeader,
+      cardStyle: { backgroundColor: "transparent" },
+    },
+  },
+  "grid-scr": {
+    component: GridScreen,
+    // options: ({ route }) =>
+    //   presetNavConfig.headerTitle({ route, param: "title" }),
+  },
+  "user-scr": {
+    component: UserScreen,
+    options: {
+      title: "Profile",
+      ...presetNavConfig.noHeader,
+      cardStyle: { backgroundColor: "transparent" },
+    },
+  },
+  "toasty-sh": {
+    component: ToastySheet,
+    options: {
+      title: "",
+      ...presetNavConfig.noHeader,
+      cardStyle: { backgroundColor: "transparent" },
+    },
   },
 };
 
-const __PRIMARY = R.keys(screenProps);
-export type enum_PrimaryStack = KeyOf<typeof screenProps>;
+const __PRIMARY = R.keys(SCR_C0);
+export type enum_PrimaryStack = KeyOf<typeof SCR_C0>;
 
-export const PrimaryStack = withTheme((props: IPSCR) => {
-  const Stack = createStackNavigator<typeof screenProps>();
-  const {
-    theme: { C, dark },
-    setTheme,
-  } = props;
+export const PrimaryStack = () => {
+  const Stack = createStackNavigator<typeof SCR_C0>();
+  const { C } = useAppContext();
 
   const config: StackNavigationOptions = {
     ...TransitionPresets.ModalPresentationIOS,
@@ -44,23 +76,22 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
     animationEnabled: true,
     headerStyle: {
       elevation: 0,
-      backgroundColor: C.background01,
+      backgroundColor: C.background,
       borderBottomWidth: 0,
     },
     headerTitleStyle: {
-      color: C.text01,
+      color: C.text,
     } as TextStyle,
-    headerBackImage: (props) => (
-      <Image
-        source={img.x}
-        style={{ marginLeft: spacing(2), width: 16, height: 16 }}
-      />
+
+    headerBackImage: () => (
+      <IconOooh preset={"safe"} name={"arrow_left"} size={16} color={C.text} />
     ),
   };
 
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      // initialRouteName="home-scr"
+      initialRouteName="grid-scr"
       headerMode="float"
       mode="modal"
       screenOptions={config}
@@ -68,11 +99,11 @@ export const PrimaryStack = withTheme((props: IPSCR) => {
       {__PRIMARY.map((screen) => (
         <Stack.Screen
           name={screen}
-          {...screenProps[screen]}
+          {...SCR_C0[screen]}
           key={screen}
           // options={screen == "Home" ? screenOptions : screen.options}
         />
       ))}
     </Stack.Navigator>
   );
-});
+};

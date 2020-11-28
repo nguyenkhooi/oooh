@@ -35,10 +35,13 @@ export interface dTheme {
 /**
  * List of theme index
  */
-export type ENUM_Theme = "themeLight" | "themeDark"; //* Add more theme index here if wanted
-export interface PROPS_ThemeProvider {
-  theme: ENUM_Theme;
-  setTheme?(theme: ENUM_Theme): void;
+export enum THEME {
+  LIGHT = "themeLight",
+  DARK = "themeDark",
+} //* Add more theme index here if wanted
+export interface dThemeProvider {
+  theme: THEME;
+  setTheme?(theme: THEME): void;
   children: React.ReactNode;
 }
 

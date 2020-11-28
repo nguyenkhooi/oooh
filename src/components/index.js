@@ -1,4 +1,2 @@
-//@ts-check
-
-export * from "./decks";
 export * from "./generals";
+export * from "./externals";

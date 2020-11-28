@@ -1,43 +1,56 @@
+import React from "react";
+import { StyleSheet, View, Text } from "react-native";
+import StorybookPage from "./storybook";
 import * as eva from "@eva-design/eva";
-import { NavigationContainerRef } from "@react-navigation/native";
-import { ApplicationProvider } from "@ui-kitten/components";
 import { Toasty } from "components";
-import { ThemeProvider } from "engines";
-import * as React from "react";
+import { AppProvider } from "engines";
 import {
   AppNavigator,
   canExit,
   setRootNavigation,
   useBackButtonHandler,
-  useNavigationPersistence
+  useNavigationPersistence,
 } from "screens";
-import { ENUM_Theme, themeDark, themeLight } from "utils";
+import { NavigationContainerRef } from "@react-navigation/native";
+import { SplashScreen } from "expo";
 
-function App() {
-  const [_theme, setTheme] = React.useState<ENUM_Theme>("themeLight");
+function PureApp() {
+  //* ----RNAV-SECTION -------------------------------
   const navigationRef = React.useRef<NavigationContainerRef>();
-
   setRootNavigation(navigationRef);
   useBackButtonHandler(navigationRef, canExit);
   const {
     initialNavigationState,
     onNavigationStateChange,
   } = useNavigationPersistence();
+
+  //* ----I18N-SECTION -------------------------------
+  // React.useEffect(function getI18n() {
+  //   SplashScreen.preventAutoHideAsync();
+  //   fetchi18n().then((r) => r.code == "I18N_DONE" && shouldReady(true));
+  // }, []);
   return (
-    <ThemeProvider theme={_theme} setTheme={setTheme}>
-      <ApplicationProvider
-        {...eva}
-        theme={_theme == "themeLight" ? themeLight : themeDark}
-      >
-        <AppNavigator
-          ref={navigationRef}
-          initialState={initialNavigationState}
-          onStateChange={onNavigationStateChange}
-        />
-        <Toasty ref={(ref) => Toasty.setRef(ref)} />
-      </ApplicationProvider>
-    </ThemeProvider>
+    <AppProvider>
+      <AppNavigator
+        ref={navigationRef}
+        initialState={initialNavigationState}
+        onStateChange={onNavigationStateChange}
+      />
+      <Toasty ref={(r) => Toasty.setRef(r)} />
+    </AppProvider>
   );
 }
 
+let SHOW_STORYBOOK = false;
+const App = SHOW_STORYBOOK ? StorybookPage : PureApp;
+
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

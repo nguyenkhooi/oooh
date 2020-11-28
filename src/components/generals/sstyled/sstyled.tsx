@@ -1,5 +1,6 @@
-import React from "react";
-import { dDime, dSCR, useDimension } from "utils";
+import { useAppContext } from "engines";
+import React, { ReactNode } from "react";
+import { dColors, dDimension, useDimension } from "utils";
 
 /**
  * "Super" styled component. 
@@ -17,7 +18,7 @@ import { dDime, dSCR, useDimension } from "utils";
   ```
  * ---
  * @version 1.10.20
- * - *Add dynamic dimension support (`useDimension()`)*
+ * - *Add dynamic dimension support - `useDimension()`*
  * - *Clean up*
  * @author nguyenkhooi
  */
@@ -30,17 +31,19 @@ export function sstyled<Component extends React.ElementType>(
    */
   return (
     style: dTargetedCompStyle<Component, Props>
-  ): React.FC<dTargetedComp<Component, Props>> => {
+  ): React.FC<React.ComponentProps<typeof GivenComp>> => {
     /**
      * Return targeted component
      */
-    return function TargetedComp(props: dSstyled) {
+    return function TargetedComp(props) {
       const dim = useDimension();
+      const { C } = useAppContext();
       return React.createElement(GivenComp, {
         ...props,
+        ...dim,
         style: {
           ...(typeof style === "function"
-            ? style({ ...props, ...dim })
+            ? style({ ...props, ...dim, C })
             : style),
           ...props.style,
         },
@@ -49,7 +52,10 @@ export function sstyled<Component extends React.ElementType>(
   };
 }
 
-interface Props extends dDime {}
+interface Props extends dDimension {
+  children: ReactNode | Element;
+  C: dColors;
+}
 
 type dTargetedComp<C, P> = React.ComponentProps<C> & P;
 
@@ -62,6 +68,3 @@ type dTargetedCompStyle<C, P> =
  * Ideally, sstyled() component will inherit screen props,
  * so if we have universal screen props, extend dSstyled with it
  */
-interface dSstyled extends dSCR {
-  style: any;
-}

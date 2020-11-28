@@ -1,7 +1,7 @@
 // import Octicons from "react-native-vector-icons/Octicons"
 import * as R from "ramda";
 import React from "react";
-import { Platform, View, ViewStyle } from "react-native";
+import { Platform, TouchableOpacity, View, ViewStyle } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
@@ -95,11 +95,20 @@ export const iconOptions = {
 /**
  * Main and the only Icon component of the whole codebase
  *
+ * @version 1.10.10 (add disabled icon's color)
  * @example
- *  <IconOooh preset={`safe`} name={`arrow_left`} size={30} color={"black"} />
+ *  <IconOooh preset={"safe"} name={"arrow_left"} size={30} color={"dodgerblue"} />
  */
 export default function IconOooh(props: dIconOooh) {
-  const { preset = "safe", name, size, color, containerStyle = {} } = props;
+  const {
+    preset = "safe",
+    name = "placeholder",
+    size = 20,
+    color = "dodgerblue",
+    disabled = false,
+    containerStyle = {},
+    onPress,
+  } = props;
   const _containerStyle: ViewStyle = R.mergeAll(
     R.flatten([
       presets(size)[preset].containerStyle ||
@@ -112,7 +121,7 @@ export default function IconOooh(props: dIconOooh) {
       presets(size)[preset].icon || presets().default.icon,
       {
         size,
-        color,
+        color: disabled ? "#69696940" : color,
         name,
       },
     ])
@@ -125,13 +134,25 @@ export default function IconOooh(props: dIconOooh) {
       />
     );
   } else {
-    const { type, scale = 1, icon } = iconOptions[name];
+    const { type, scale = 1, icon, solid } = iconOptions[name];
     const { size, color } = _iconStyle;
+    const _solid = R.isNil(solid) ? true : solid;
     const BrandedIcon = getType(type);
+    const IconContainer = !!onPress ? TouchableOpacity : View;
     return (
-      <View style={_containerStyle}>
-        <BrandedIcon name={icon} solid size={size * scale} color={color} />
-      </View>
+      <IconContainer
+        activeOpacity={0.9}
+        disabled={disabled}
+        style={_containerStyle}
+        onPress={onPress}
+      >
+        <BrandedIcon
+          name={icon}
+          size={size * scale}
+          color={color}
+          solid={_solid}
+        />
+      </IconContainer>
     );
   }
 }

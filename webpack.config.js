@@ -17,6 +17,12 @@ const babelLoaderRules = {
   },
 };
 
+const reactGridRules = {
+  test: /\.js$/,
+  exclude: /node_modules[/\\](?!react-data-grid[/\\]lib)/,
+  use: "babel-loader",
+};
+
 module.exports = async function (env, argv) {
   //   const config = await createExpoWebpackConfigAsync(env, argv);
 
@@ -35,6 +41,10 @@ module.exports = async function (env, argv) {
     ...aliases,
   };
 
-  config.module.rules = [...config.module.rules, babelLoaderRules];
+  config.module.rules = [
+    ...config.module.rules,
+    babelLoaderRules,
+    reactGridRules,
+  ];
   return config;
 };

@@ -3,7 +3,7 @@ import {
   storage,
   themeDark,
   themeLight,
-  PROPS_ThemeProvider,
+  dThemeProvider,
   PROPSCOMP,
 } from "utils";
 import * as React from "react";
@@ -45,7 +45,7 @@ import * as React from "react";
 
 export const ThemeContext = React.createContext(null);
 
-export function ThemeProvider(props: PROPS_ThemeProvider) {
+export function ThemeProvider(props: dThemeProvider) {
   const { theme } = props;
   const _themeColor = theme == `themeDark` ? themeDark : themeLight;
 

@@ -14,7 +14,7 @@ import { Dimensions } from "react-native";
  * @version 0.9.19
  * @author nguyenkhooi
  */
-export function useDimension(type: "screen" | "window" = "window"): dDime {
+export function useDimension(type: "screen" | "window" = "window"): dDimension {
   const [dimensions, setDimensions] = React.useState({ window, screen });
 
   const onChange = ({ window, screen }) => {
@@ -50,7 +50,7 @@ export function useDimension(type: "screen" | "window" = "window"): dDime {
   return { WIDTH, HEIGHT, s, vs, ms, mvs };
 }
 
-export interface dDime {
+export interface dDimension {
   WIDTH: number;
   HEIGHT: number;
   s(size: number): number;
