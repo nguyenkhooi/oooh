@@ -1,16 +1,47 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import StorybookPage from "./storybook";
+import * as eva from "@eva-design/eva";
+import { Poppy } from "components";
+import { AppProvider } from "engines";
+import {
+  AppNavigator,
+  canExit,
+  setRootNavigation,
+  useBackButtonHandler,
+  useNavigationPersistence,
+} from "screens";
+import { NavigationContainerRef } from "@react-navigation/native";
+import { SplashScreen } from "expo";
 
 function PureApp() {
+  //* ----RNAV-SECTION -------------------------------
+  const navigationRef = React.useRef<NavigationContainerRef>();
+  setRootNavigation(navigationRef);
+  useBackButtonHandler(navigationRef, canExit);
+  const {
+    initialNavigationState,
+    onNavigationStateChange,
+  } = useNavigationPersistence();
+
+  //* ----I18N-SECTION -------------------------------
+  // React.useEffect(function getI18n() {
+  //   SplashScreen.preventAutoHideAsync();
+  //   fetchi18n().then((r) => r.code == "I18N_DONE" && shouldReady(true));
+  // }, []);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <AppProvider>
+      <AppNavigator
+        ref={navigationRef}
+        initialState={initialNavigationState}
+        onStateChange={onNavigationStateChange}
+      />
+      <Poppy ref={(r) => Poppy.setRef(r)} />
+    </AppProvider>
   );
 }
 
-let SHOW_STORYBOOK = true;
+let SHOW_STORYBOOK = false;
 const App = SHOW_STORYBOOK ? StorybookPage : PureApp;
 
 export default App;

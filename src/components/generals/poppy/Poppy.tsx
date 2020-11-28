@@ -1,4 +1,4 @@
-import { IconKreme } from "assets";
+import { IconOooh } from "assets";
 import React, { Component } from "react";
 import {
   ActivityIndicator,
@@ -6,17 +6,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
-import {
-  dPoppy,
-  dPoppyOptions,
-  PoppyActions,
-  PoppyContent,
-  PoppyItem,
-  PoppyScrollArea,
-  PoppyTitle
-} from "./poppy-item";
+import { dPoppy, dPoppyOptions, PoppyItem } from "./poppy-item";
 
 const dims = Dimensions.get("window");
 
@@ -30,10 +22,6 @@ interface State {
 }
 
 export class Poppy extends Component<Props, State> {
-  static Content: () => JSX.Element;
-  static Actions: () => JSX.Element;
-  static Title: () => JSX.Element;
-  static ScrollArea: () => JSX.Element;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -73,11 +61,11 @@ export class Poppy extends Component<Props, State> {
 
   static icon = {
     success: (
-      <IconKreme preset={"safe"} name={"check"} size={12} color={"white"} />
+      <IconOooh preset={"safe"} name={"check"} size={12} color={"white"} />
     ),
-    danger: <IconKreme preset={"safe"} name={"x"} size={12} color={"white"} />,
+    danger: <IconOooh preset={"safe"} name={"x"} size={12} color={"white"} />,
     warning: (
-      <IconKreme
+      <IconOooh
         preset={"safe"}
         name={"exclamation_circle"}
         size={12}
@@ -85,7 +73,7 @@ export class Poppy extends Component<Props, State> {
       />
     ),
     normal: (
-      <IconKreme preset={"safe"} name={"check"} size={12} color={"white"} />
+      <IconOooh preset={"safe"} name={"check"} size={12} color={"white"} />
     ),
     loading: <ActivityIndicator size="small" color="white" />,
   };
@@ -152,15 +140,6 @@ export class Poppy extends Component<Props, State> {
     );
   }
 }
-
-// @component ./DialogContent.tsx
-Poppy.Content = PoppyContent;
-// @component ./PoppyActions.tsx
-Poppy.Actions = PoppyActions;
-// @component ./PoppyTitle.tsx
-Poppy.Title = PoppyTitle;
-// @component ./PoppyScrollArea.tsx
-Poppy.ScrollArea = PoppyScrollArea;
 
 const styles = StyleSheet.create({
   container: {

@@ -7,7 +7,7 @@ import {
   TextStyle,
   TouchableWithoutFeedback,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import { spacing } from "utils";
 import { sstyled } from "../sstyled/sstyled";
@@ -165,42 +165,3 @@ const Message = sstyled(Txt)((p) => ({
   textAlign: "center",
   fontWeight: "500",
 }));
-
-export const PoppyContent = React.forwardRef((props, ref) => {
-  const { message } = props;
-  return (
-    <Animated.View
-      style={{ backgroundColor: "tomato", width: 1000, height: 50 }}
-    >
-      <Text onPress={_onClose} style={[styles.message, textStyle]}>
-        {message}
-      </Text>
-    </Animated.View>
-  );
-});
-
-export const PoppyActions = () => {
-  return (
-    <View
-      style={{ backgroundColor: "dodgerblue", width: 1000, height: 50 }}
-    ></View>
-  );
-};
-export const PoppyTitle = () => {
-  return (
-    <View style={{ backgroundColor: "tomato", width: 1000, height: 50 }}></View>
-  );
-};
-
-export const PoppyScrollArea = () => {
-  return (
-    <View style={{ backgroundColor: "tomato", width: 1000, height: 50 }}></View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {},
-  message: {},
-});
-
-// export default Poppy;
