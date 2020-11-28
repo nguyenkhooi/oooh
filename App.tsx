@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import StorybookPage from "./storybook";
 import * as eva from "@eva-design/eva";
-import { Poppy } from "components";
+import { Toasty } from "components";
 import { AppProvider } from "engines";
 import {
   AppNavigator,
@@ -36,7 +36,7 @@ function PureApp() {
         initialState={initialNavigationState}
         onStateChange={onNavigationStateChange}
       />
-      <Poppy ref={(r) => Poppy.setRef(r)} />
+      <Toasty ref={(r) => Toasty.setRef(r)} />
     </AppProvider>
   );
 }

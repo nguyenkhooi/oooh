@@ -1,4 +1,4 @@
-import { Buttoon, Ni, Poppy, sstyled, Txt } from "components";
+import { Buttoon, Ni, Toasty, sstyled, Txt } from "components";
 import { useAppContext } from "engines";
 import React from "react";
 import { View } from "react-native";
@@ -17,9 +17,9 @@ export function WelcomeScreen() {
         <Buttoon
           size="small"
           onLongPress={() => setTheme(dark ? THEME.LIGHT : THEME.DARK)}
-          onPress={() => Poppy.show("Hey")}
+          onPress={() => Toasty.show("Hey", { type: "loading" })}
         >
-          {tr("Hi I'm Poppy!")}
+          {tr("Hi I'm Toasty!")}
         </Buttoon>
       </CtnrWelcome>
     </Ctnr>

@@ -12,7 +12,7 @@ import { TextStyle } from "react-native";
 import { GridBuilderScreen } from "screens/grid-builder-scr";
 import { GridScreen } from "screens/grid-scr/GridScreen";
 import { S_UserCorner } from "screens/home-scr/s-user-corner";
-import { PoppySheet } from "screens/poppy-sh/PoppySheet";
+import { ToastySheet } from "screens/toasty-sh/ToastySheet";
 import { TestScreen } from "screens/test-scr/TestScreen";
 import { KeyOf } from "utils";
 import { HomeScreen } from "../home-scr/HomeScreen";
@@ -52,8 +52,8 @@ const SCR_C0: dStackedScreenC0 = {
       cardStyle: { backgroundColor: "transparent" },
     },
   },
-  "poppy-sh": {
-    component: PoppySheet,
+  "toasty-sh": {
+    component: ToastySheet,
     options: {
       title: "",
       ...presetNavConfig.noHeader,

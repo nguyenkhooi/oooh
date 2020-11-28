@@ -8,20 +8,35 @@ import {
   StyleSheet,
   ViewStyle,
 } from "react-native";
-import { dPoppy, dPoppyOptions, PoppyItem } from "./poppy-item";
+import { ToastyItem } from "./toasty-item";
+import { dToastyOptions, Props, State } from "./toasty.props";
 
 const dims = Dimensions.get("window");
 
-export interface Props extends dPoppyOptions {
-  offset?: number;
-  placement: "top" | "bottom";
-}
-
-interface State {
-  toasts: Array<dPoppy>;
-}
-
-export class Poppy extends Component<Props, State> {
+/**
+ * A Toast component for react-native, 
+ * supports Android, IOS, Web, Windows
+ *
+ * ---
+ * @example
+ * 
+ * <Text onPress={()=> 
+ *  Toasty.show("Hello mf", 
+ *  { type: "success" })
+ * }>
+ *  Toast!
+ * </Text>
+ * 
+ * - In `App.tsx`, add: 
+ * <Toasty ref={(ref) => Toasty.setRef(ref)} />
+ * ---
+ * @version 0.11.28
+ * -  *Add to @oooh*
+ *
+ * @author nguyenkhooi
+ * @see https://github.com/arnnis/react-native-fast-toast
+ */
+export class Toasty extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -34,11 +49,11 @@ export class Poppy extends Component<Props, State> {
     offset: 60,
   };
 
-  refPoppy = React.createRef<Poppy>();
+  refToasty = React.createRef<Toasty>();
 
-  static _ref: null | Poppy = null;
+  static _ref: null | Toasty = null;
 
-  static setRef(ref: null | Poppy = null) {
+  static setRef(ref: null | Toasty = null) {
     this._ref = ref;
   }
 
@@ -50,12 +65,12 @@ export class Poppy extends Component<Props, State> {
     this._ref = null;
   }
 
-  static show(message: string, p_: dPoppyOptions) {
+  static show(message: string, p_: dToastyOptions) {
     let id = this._ref?.show(message, p_);
     return id;
   }
 
-  static update(id: string, message: string, p_: dPoppyOptions) {
+  static update(id: string, message: string, p_: dToastyOptions) {
     this._ref?.update(id, message, p_);
   }
 
@@ -78,10 +93,16 @@ export class Poppy extends Component<Props, State> {
     loading: <ActivityIndicator size="small" color="white" />,
   };
 
-  show = (message: string | JSX.Element, toastOptions?: dPoppyOptions) => {
+  show = (message: string | JSX.Element, toastOptions?: dToastyOptions) => {
     let id = Math.random().toString();
     const onClose = () => this.hide(id);
-
+    const icon =
+      toastOptions.type === "loading" ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        toastOptions.icon
+      );
+    const options: dToastyOptions = { ...toastOptions, icon };
     requestAnimationFrame(() => {
       this.setState({ toasts: this.state.toasts.filter((t) => t.id !== id) });
       this.setState({
@@ -90,7 +111,7 @@ export class Poppy extends Component<Props, State> {
             id,
             onClose,
             message,
-            ...toastOptions,
+            ...options,
           },
           ...this.state.toasts,
         ],
@@ -103,7 +124,7 @@ export class Poppy extends Component<Props, State> {
   update = (
     id: string,
     message: string | JSX.Element,
-    toastOptions?: dPoppyOptions
+    toastOptions?: dToastyOptions
   ) => {
     this.setState({
       toasts: this.state.toasts.map((toast) =>
@@ -134,7 +155,7 @@ export class Poppy extends Component<Props, State> {
         pointerEvents="box-none"
       >
         {toasts.map((toast) => (
-          <PoppyItem key={toast.id} {...this.props} {...toast} />
+          <ToastyItem key={toast.id} {...this.props} {...toast} />
         ))}
       </KeyboardAvoidingView>
     );
@@ -147,7 +168,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     maxWidth: dims.width * 10 * 9,
     bottom: 1000,
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
     borderRadius: 5,
     zIndex: 999,
