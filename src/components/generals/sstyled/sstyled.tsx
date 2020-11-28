@@ -1,6 +1,6 @@
 import { useAppContext } from "engines";
 import React, { ReactNode } from "react";
-import { dColors, dDime, dSCR, useDimension } from "utils";
+import { dColors, dDimension, useDimension } from "utils";
 
 /**
  * "Super" styled component. 
@@ -52,7 +52,7 @@ export function sstyled<Component extends React.ElementType>(
   };
 }
 
-interface Props extends dDime {
+interface Props extends dDimension {
   children: ReactNode | Element;
   C: dColors;
 }
@@ -68,6 +68,3 @@ type dTargetedCompStyle<C, P> =
  * Ideally, sstyled() component will inherit screen props,
  * so if we have universal screen props, extend dSstyled with it
  */
-interface dSstyled extends dSCR {
-  style: any;
-}

@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@ui-kitten/components";
-import { dIconKreme, IconKreme } from "assets";
+import { dIconOooh, IconOooh } from "assets";
 import { dAccessory } from "components";
 import * as React from "react";
 import { ActivityIndicator, Keyboard } from "react-native";
@@ -55,7 +55,7 @@ export function Buttoon(props: P) {
             <ActivityIndicator color={p.style.tintColor} />
           ) : (
             // <></>
-            <IconKreme
+            <IconOooh
               preset={"default"}
               name={`arrow_left`}
               size={p.style.width * 0.8}
@@ -71,7 +71,7 @@ export function Buttoon(props: P) {
             <ActivityIndicator color={p.style.tintColor} />
           ) : (
             // <></>
-            <IconKreme
+            <IconOooh
               preset={"default"}
               name={`arrow_left`}
               size={p.style.width * 0.8}
@@ -110,7 +110,7 @@ export function Buttoon(props: P) {
 // };
 
 interface P extends ButtonProps {
-  icon?: dIconKreme & {
+  icon?: dIconOooh & {
     /** Is icon on the right? */
     right?: boolean;
   };
