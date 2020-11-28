@@ -20,6 +20,10 @@ const dims = Dimensions.get("window");
  * ---
  * @example
  *
+ * //* In `App.tsx`, add:
+ * <Toasty ref={(ref) => Toasty.setRef(ref)} />
+ * 
+ * //* Simple case
  * <Text onPress={()=>
  *  Toasty.show("Hello mf",
  *  { type: "success" })
@@ -27,8 +31,20 @@ const dims = Dimensions.get("window");
  *  Toast!
  * </Text>
  *
- * - In `App.tsx`, add:
- * <Toasty ref={(ref) => Toasty.setRef(ref)} />
+ * //* Loading case
+ * <Text onPress={() => {
+ *  const __toasty = Toasty.show("On the way...", { type: "loading" });
+ *  setTimeout(() => {
+ *   !!__toasty &&
+ *     Toasty.update(__toasty, "Done!", {
+ *     type: "success",
+ *     icon: Toasty.icon.success,
+ *    });
+ *   }, 1000);
+ *  }}>Fetch!
+ * </Text>
+ *
+
  * ---
  * @version 0.11.28
  * -  *Add to @oooh*
