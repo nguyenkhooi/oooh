@@ -12,7 +12,8 @@
     "deploy": "gh-pages -d web-build",
     "predeploy": "expo build:web",
     "storybook": "start-storybook -p 7007",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "bob build"
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
@@ -85,23 +86,22 @@
     ]
   },
   "private": true,
-  "react-native": "src/components/index.js",
+  "react-native": "src/index.js",
   "module": "lib/module/index.js",
-  "types": "lib/typescript/src/components/index.d.ts",
+  "types": "lib/typescript/src/index.d.ts",
   "files": [
-    "src/components",
+    "src",
     "lib",
     "!**/__tests__",
     "!**/__fixtures__",
-    "!**/__mocks__"
+    "!**/__mocks__",
+    "src/components"
   ],
   "@react-native-community/bob": {
-    "source": "src/components",
+    "source": "src",
     "output": "lib",
     "targets": [
-      "aar",
       "commonjs",
-      "module",
       "typescript"
     ]
   },
